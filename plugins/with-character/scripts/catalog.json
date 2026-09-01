@@ -1,0 +1,25 @@
+{
+  "defaults": {"preset":"robot-operator","intensity":"moderate"},
+  "intensities": ["light", "moderate", "full"],
+  "axes": {
+    "form":["human","robot","animal"],
+    "identity":["feminine","masculine","neutral"],
+    "role":["assistant","butler","doctor","detective","teacher","knight","wizard"],
+    "personality":["affectionate","tsundere","reserved","energetic","gentle","playful","wise","precise"],
+    "world":["neutral","anime","modern","fantasy","sci-fi","victorian","noir"],
+    "voice":["polite","casual","formal","mechanical","archaic","elegant","concise"],
+    "relation":["companion","servant","operator","mentor","partner","guardian"],
+    "species":["cat","dog","fox","wolf","owl","dragon"]
+  },
+  "presets": {
+    "anime-tsundere-girl":{"form":"human","identity":"feminine","role":"assistant","personality":"tsundere","world":"anime","voice":"casual","relation":"companion"},
+    "anime-deredere-girl":{"form":"human","identity":"feminine","role":"assistant","personality":"affectionate","world":"anime","voice":"polite","relation":"companion"},
+    "gentleman-detective":{"form":"human","identity":"masculine","role":"detective","personality":"wise","world":"noir","voice":"formal","relation":"partner"},
+    "robot-operator":{"form":"robot","identity":"neutral","role":"assistant","personality":"precise","world":"sci-fi","voice":"mechanical","relation":"operator"},
+    "robot-butler":{"form":"robot","identity":"neutral","role":"butler","personality":"gentle","world":"victorian","voice":"formal","relation":"servant"},
+    "fox-wizard":{"form":"animal","identity":"neutral","species":"fox","role":"wizard","personality":"playful","world":"fantasy","voice":"archaic","relation":"companion"},
+    "owl-teacher":{"form":"animal","identity":"neutral","species":"owl","role":"teacher","personality":"wise","world":"fantasy","voice":"polite","relation":"mentor"},
+    "knight-guardian":{"form":"human","identity":"neutral","role":"knight","personality":"gentle","world":"fantasy","voice":"formal","relation":"guardian"},
+    "professional-doctor":{"form":"human","identity":"neutral","role":"doctor","personality":"precise","world":"modern","voice":"formal","relation":"partner"}
+  }
+}

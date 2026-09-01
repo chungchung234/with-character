@@ -1,0 +1,18 @@
+{
+  "name": "with-character",
+  "version": "0.1.0",
+  "description": "Compose distinct AI companion voices from form, role, personality, world, voice, and relationship traits.",
+  "author": {
+    "name": "chung"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "With Character",
+    "shortDescription": "Build a companion voice from composable traits.",
+    "longDescription": "Choose a curated preset or combine form, role, personality, world, voice, and relationship traits while preserving technical accuracy.",
+    "developerName": "chung",
+    "category": "Productivity",
+    "capabilities": ["skills"],
+    "defaultPrompt": "Help me choose and apply a With Character persona."
+  }
+}

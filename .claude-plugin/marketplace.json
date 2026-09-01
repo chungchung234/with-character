@@ -1,0 +1,11 @@
+{
+  "name": "with-character",
+  "owner": { "name": "chung" },
+  "plugins": [
+    {
+      "name": "with-character",
+      "source": "./plugins/with-character",
+      "description": "조합형 AI 캐릭터 보이스 — 형태·역할·성격·세계관·말투·관계를 자유롭게 결합"
+    }
+  ]
+}
