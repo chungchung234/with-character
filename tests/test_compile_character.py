@@ -147,8 +147,22 @@ class CompilerTest(unittest.TestCase):
     def test_freeze_adds_seed_only_when_needed(self):
         frozen = compiler.freeze_config({"preset": "dog", "chaos": "true"}, seed=1234)
         plain = compiler.freeze_config({"preset": "dog"}, seed=1234)
+        self.assertEqual("1", frozen["schema_version"])
+        self.assertEqual("1", plain["schema_version"])
         self.assertEqual("1234", frozen["seed"])
         self.assertNotIn("seed", plain)
+
+    def test_legacy_config_without_schema_version_remains_valid(self):
+        result = self.resolve({"preset": "dog"})
+        self.assertEqual("dog", result["preset"])
+
+    def test_future_schema_version_is_rejected(self):
+        with self.assertRaisesRegex(ValueError, "unsupported schema_version"):
+            self.resolve({"schema_version": "2", "preset": "dog"})
+
+    def test_unknown_top_level_field_is_rejected(self):
+        with self.assertRaisesRegex(ValueError, "unknown config field"):
+            self.resolve({"preset": "dog", "typo": "value"})
 
     def test_yaml_round_trip_preserves_llm_contract(self):
         config = {

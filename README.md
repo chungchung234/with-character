@@ -8,7 +8,7 @@
 
 [![Claude Code Plugin](https://img.shields.io/badge/Claude_Code-plugin-D97757?style=flat-square)](https://code.claude.com/docs/en/plugins)
 [![Codex Skill](https://img.shields.io/badge/Codex-skill-111111?style=flat-square)](https://github.com/openai/codex)
-[![Tests](https://img.shields.io/badge/tests-22_passing-2ea44f?style=flat-square)](#개발과-검증)
+[![Tests](https://img.shields.io/badge/tests-25_passing-2ea44f?style=flat-square)](#개발과-검증)
 [![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](LICENSE)
 
 [빠른 시작](#1분-만에-시작하기) · [캐릭터](#캐릭터-카탈로그) · [랜덤과 카오스](#랜덤과-카오스의-차이) · [자연어 설정](#자연어로-원하는-조합-만들기) · [개발](#개발과-검증)
@@ -138,6 +138,7 @@ chaos random
 
 ```yaml
 ---
+schema_version: 1
 enabled: true
 preset: dog
 chaos: true
@@ -316,6 +317,7 @@ details:
 
 | 필드 | 의미 |
 |---|---|
+| `schema_version` | 설정 형식 버전. 1.0에서는 `1`이며 기존 무버전 설정도 자동 호환됩니다. |
 | `preset` | 기준이 되는 완성형 캐릭터 |
 | `chaos` | 기준 프리셋의 일부 보조 축 변형 |
 | `seed` | 랜덤 결과를 고정하는 값 |
@@ -323,6 +325,10 @@ details:
 | `details` | 카오스보다 우선하는 명시적 설정 |
 
 동물어 프리셋의 `subtitle`은 동물어 뒤에 전체 통역을 제공하고, `pure`는 코드와 원문을 제외한 산문을 동물어로만 말합니다.
+
+### 1.0 업그레이드
+
+기존 `.claude/with-character.local.md`는 그대로 사용할 수 있습니다. 다음에 설정을 변경하면 `schema_version: 1`이 자동으로 추가되며, 기존 프리셋 ID와 한국어 별칭도 유지됩니다.
 
 ## 설계 원칙
 
@@ -399,3 +405,5 @@ python3 plugins/with-character/scripts/compile_character.py examples/with-charac
 ## 라이선스
 
 [MIT License](LICENSE)
+
+릴리스 변경 내역은 [CHANGELOG.md](CHANGELOG.md)에서 확인할 수 있습니다.

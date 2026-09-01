@@ -9,6 +9,11 @@ from typing import Optional
 
 AXIS_ORDER = ["embodiment", "identity", "species", "role", "personality", "world", "voice", "relation", "humor"]
 LEGACY_AXES = {"form": "embodiment"}
+SCHEMA_VERSION = "1"
+TOP_LEVEL_FIELDS = {
+    "schema_version", "enabled", "strategy", "preset", "character", "pack", "chaos",
+    "mode", "intensity", "seed", "details", "advanced", "overrides", "custom"
+}
 
 
 def parse_config(path: Path) -> dict:
@@ -39,6 +44,18 @@ def as_bool(value) -> bool:
     return str(value).lower() in {"true", "on", "yes", "1", "켜기"}
 
 
+def validate_config(config: dict) -> None:
+    version = str(config.get("schema_version", SCHEMA_VERSION))
+    if version != SCHEMA_VERSION:
+        raise ValueError(f"unsupported schema_version: {version}; expected {SCHEMA_VERSION}")
+    unknown = set(config) - TOP_LEVEL_FIELDS
+    if unknown:
+        raise ValueError(f"unknown config field: {sorted(unknown)[0]}")
+    for section in ("details", "advanced", "overrides", "custom"):
+        if section in config and not isinstance(config[section], dict):
+            raise ValueError(f"{section} must be a mapping")
+
+
 def needs_seed(config: dict) -> bool:
     preset = config.get("preset", config.get("character"))
     strategy = config.get("strategy")
@@ -47,13 +64,14 @@ def needs_seed(config: dict) -> bool:
 
 def freeze_config(config: dict, seed=None) -> dict:
     frozen = dict(config)
+    frozen.setdefault("schema_version", SCHEMA_VERSION)
     if needs_seed(frozen) and "seed" not in frozen:
         frozen["seed"] = str(seed if seed is not None else secrets.randbits(32))
     return frozen
 
 
 def yaml_config(config: dict) -> str:
-    ordered = ["enabled", "strategy", "preset", "character", "pack", "chaos", "mode", "intensity", "seed"]
+    ordered = ["schema_version", "enabled", "strategy", "preset", "character", "pack", "chaos", "mode", "intensity", "seed"]
     lines = ["---"]
     for key in ordered:
         if key in config:
@@ -165,6 +183,7 @@ def apply_custom(signature: Optional[dict], custom: dict) -> tuple:
 
 
 def resolve(config: dict, catalog: dict, rng=None) -> dict:
+    validate_config(config)
     rng = rng or seeded_rng(config)
     explicitly_configured = bool(config)
     intensity = config.get("intensity", catalog["defaults"]["intensity"])

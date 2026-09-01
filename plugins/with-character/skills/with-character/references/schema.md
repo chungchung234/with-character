@@ -4,10 +4,13 @@ Most users select only a preset:
 
 ```yaml
 ---
+schema_version: 1
 enabled: true
 preset: dog
 ---
 ```
+
+`schema_version` is `1`. Configuration files without this field are treated as version 1 for backward compatibility and gain the field the next time they are frozen. Unsupported future versions and unknown top-level fields fail validation instead of being silently ignored.
 
 ## Selection strategies
 
