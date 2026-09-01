@@ -1,20 +1,20 @@
 {
   "name": "with-character",
-  "version": "0.5.0+codex.20260901031907",
-  "description": "Choose a polished preset, remix it with chaos and details, or generate a fully random persona from natural Korean or English requests.",
+  "version": "0.5.1+codex.20260901044132",
+  "description": "Give your coding agent one of 64 curated character voices or create a custom mix in Korean or English while preserving technical content.",
   "author": {
     "name": "chung"
   },
   "skills": "./skills/",
   "interface": {
     "displayName": "With Character",
-    "shortDescription": "Pick a preset, then remix it if you want.",
-    "longDescription": "Start with a curated preset, use safe preset random, add chaos to a recognizable base, or fully randomize all axes. The host model understands Korean and English requests; deterministic validation keeps settings stable.",
+    "shortDescription": "64 character voices for your coding agent.",
+    "longDescription": "Choose one of 64 curated character presets, describe a custom persona in Korean or English, or remix a recognizable character with Chaos. Code, commands, paths, logs, facts, and safety remain intact, while deterministic validation keeps random results stable.",
     "developerName": "chung",
     "category": "Productivity",
     "capabilities": [
       "skills"
     ],
-    "defaultPrompt": "Show me the preset packs, random options, and chaos examples."
+    "defaultPrompt": "Help me choose a character preset and show a few fun Chaos examples."
   }
 }

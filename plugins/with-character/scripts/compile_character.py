@@ -176,7 +176,7 @@ def resolve(config: dict, catalog: dict, rng=None) -> dict:
         requested_mode = config.get("mode")
         languages = list(catalog["language_profiles"])
         language_id = rng.choice(languages if requested_mode in {"subtitle", "pure"} else [None] + languages)
-        display_name, signature = "완전 혼돈 조합", None
+        display_name, signature = "완전 카오스 조합", None
         chaos_changes = dict(traits)
         default_mode = "reaction"
     else:

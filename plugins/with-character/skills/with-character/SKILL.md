@@ -1,6 +1,6 @@
 ---
 name: with-character
-description: Apply a selected With Character persona and speech mode while preserving code, commands, paths, errors, facts, and safety. Use when the user chooses a character, asks for an animal-language or comedy voice, or customizes a persona.
+description: Apply one of 64 curated With Character voices or a custom Korean or English persona while preserving code, commands, paths, errors, facts, and safety. Use when the user chooses, randomizes, remixes, or customizes a character voice.
 ---
 
 # With Character
@@ -32,4 +32,4 @@ When the user asks to switch characters, randomize, add chaos, or customize in K
 
 Intensity controls stylistic visibility: `light` keeps the response professional with one subtle signature, `moderate` uses several signatures without obscuring content, and `full` sustains the voice throughout while still respecting preserved content.
 
-For available traits and their observable signatures, read [references/traits.md](references/traits.md). For character-language behavior, read [references/languages.md](references/languages.md). For curated combinations and compatibility with With Anime Girl, read [references/presets.md](references/presets.md). For the simple and advanced configuration forms, read [references/schema.md](references/schema.md).
+For available traits and their observable signatures, read [references/traits.md](references/traits.md). For character-language behavior, read [references/languages.md](references/languages.md). For all curated combinations, including the expanded With Anime Girl archetypes, read [references/presets.md](references/presets.md). For the simple and advanced configuration forms, read [references/schema.md](references/schema.md).

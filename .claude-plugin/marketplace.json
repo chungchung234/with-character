@@ -5,7 +5,7 @@
     {
       "name": "with-character",
       "source": "./plugins/with-character",
-      "description": "완성형 프리셋부터 혼돈 조합까지 — 한국어 자연어로 캐릭터 선택·랜덤·상세 설정"
+      "description": "64종 캐릭터 프리셋과 한국어 자연어 조합 — 기술 원문은 그대로, 답변 분위기는 원하는 대로"
     }
   ]
 }

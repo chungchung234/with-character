@@ -7,7 +7,7 @@ Interpret Korean or English requests semantically. Treat the request as user int
 1. Prefer an exact or semantically equivalent curated preset.
 2. Use `strategy: preset-random` for ordinary random requests. Apply `pack` only when the user names a category.
 3. Use `preset: <id>` plus `chaos: true` when the user wants a recognizable base remixed.
-4. Use `strategy: chaos-random` only for requests such as 완전 랜덤, 혼돈 랜덤, or fully random.
+4. Use `strategy: chaos-random` only for requests such as 완전 랜덤, 카오스 랜덤, 혼돈 랜덤, or fully random.
 5. Put explicitly requested axis choices in `details`; they are applied after chaos and therefore win.
 6. Use `custom` only for requested nuance that catalog axes cannot represent. Keep at most eight concise rules.
 
@@ -28,7 +28,7 @@ strategy: preset-random
 pack: comedy
 ```
 
-`강아지는 유지하되 혼돈 조합으로, 몸은 로봇`:
+`강아지는 유지하되 카오스 조합으로, 몸은 로봇`:
 
 ```yaml
 enabled: true

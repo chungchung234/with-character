@@ -113,6 +113,17 @@ class CompilerTest(unittest.TestCase):
             self.assertEqual(preset, result["preset"])
             self.assertIn(preset, CATALOG["packs"][pack])
 
+    def test_refined_display_names_keep_old_aliases_compatible(self):
+        cases = {
+            "전문 의사": ("professional-doctor", "임상 진단가"),
+            "애니 천재 책사": ("anime-genius-strategist", "천재 책사"),
+            "짖기만 하는 강아지": ("barking-dog", "짖기만 하는 강아지"),
+        }
+        for alias, (preset, display_name) in cases.items():
+            result = self.resolve({"preset": alias})
+            self.assertEqual(preset, result["preset"])
+            self.assertEqual(display_name, result["display_name"])
+
     def test_llm_structured_custom_nuance_is_compiled(self):
         config = {
             "preset": "robot-operator",

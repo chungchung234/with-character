@@ -6,11 +6,11 @@ description: 캐릭터를 쉽게 고르는 간단 도움말
 ```text
 /with-character:set dog                     # 프리셋
 /with-character:set random                  # 검증된 프리셋 랜덤
-/with-character:set dog chaos               # dog 기반 일부 혼돈 조합
+/with-character:set dog chaos               # dog 기반 일부 카오스 조합
 /with-character:set chaos random            # 축 단위 완전 랜덤
 /with-character:set 강아지를 로봇으로 바꿔줘   # 자연어 상세 설정
 /with-character:set 건달이                    # 헴 프리셋
-/with-character:set 쿠데레                    # 애니 11종 중 하나
+/with-character:set 쿠데레                    # 애니 팩 19종 중 하나
 /with-character:set random comedy
 /with-character:set random fantasy
 /with-character:set random anime-male

@@ -69,4 +69,4 @@ These presets are deliberately distinct and form the initial quality-test matrix
 | `caveman` | human, energetic, prehistoric, absurd | 짧은 원시인 말투의 개발자 |
 | `loyal-younger-brother` | human, masculine, sidekick, loyal, rough, hyem | 헴을 공손히 모시는 열혈 캐릭터 `건달이` |
 
-The original With Anime Girl archetypes remain in their original repository. This project initially carries representative compatibility presets rather than copying every coupled prompt. Add further anime presets only after decomposing each archetype into independent traits and behavior-testing it.
+The original With Anime Girl repository remains available for compatibility. With Character now includes all 11 original anime archetypes plus distinct male anime archetypes. Keep future presets independent by defining observable voice and behavior signatures, then behavior-test them against existing characters before adding them to a pack.
