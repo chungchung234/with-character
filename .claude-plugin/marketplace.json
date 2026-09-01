@@ -1,5 +1,6 @@
 {
   "name": "with-character",
+  "description": "Character voices for Claude Code with Korean and English presets, random selection, and Chaos remixing.",
   "owner": { "name": "chung" },
   "plugins": [
     {

@@ -38,6 +38,13 @@ With Character는 Claude Code와 Codex의 정확성과 기술 원문은 보존�
 /plugin install with-character@with-character
 ```
 
+Codex CLI에서는 다음과 같이 설치합니다.
+
+```bash
+codex plugin marketplace add chungchung234/with-character
+codex plugin add with-character@personal
+```
+
 ### 2. 캐릭터 선택
 
 ```text
@@ -381,8 +388,8 @@ plugins/with-character/
 ├── hooks/                 # 세션 시작 시 저장된 설정 로드
 ├── scripts/
 │   ├── catalog.json       # 64개 프리셋과 조합 축
-│   ├── compile_character.mjs  # 실제 런타임(Node.js 표준 라이브러리만 사용)
-│   └── compile_character.py   # 1.0 호환 참고 구현
+│   ├── locales/en.json    # 64개 프리셋의 영어 이름과 전용 말투
+│   └── compile_character.mjs  # 실제 런타임(Node.js 표준 라이브러리만 사용)
 └── skills/with-character/
     ├── SKILL.md
     └── references/        # 스키마, 말하기 모드, 프리셋 가이드
@@ -390,7 +397,7 @@ plugins/with-character/
 
 ## 개발과 검증
 
-실제 플러그인 런타임은 Node.js 표준 라이브러리만 사용합니다. Python은 필요하지 않으며 npm 패키지 설치도 없습니다.
+실제 플러그인 런타임은 Node.js 18 이상과 표준 라이브러리만 사용합니다. Python은 필요하지 않으며 npm 패키지 설치도 없습니다. 1.0의 Python seed 알고리즘을 Node에서 호환 구현해 기존 랜덤 결과도 유지합니다.
 
 ```bash
 node --test tests/test_compile_character.mjs

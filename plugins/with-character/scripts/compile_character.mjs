@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /** Resolve preset, random, chaos, locale, and detail settings into a prompt fragment. */
-import { randomBytes } from "node:crypto";
+import { createHash, randomBytes } from "node:crypto";
 import { readFileSync, writeFileSync, mkdirSync, renameSync } from "node:fs";
 import { dirname, extname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -70,20 +70,72 @@ function yamlConfig(config) {
   return `${lines.join("\n")}\n---\n`;
 }
 
-function fnv1a(value) {
-  let hash = 0x811c9dc5;
-  for (const byte of new TextEncoder().encode(String(value))) { hash ^= byte; hash = Math.imul(hash, 0x01000193); }
-  return hash >>> 0;
+// CPython-compatible Random.seed(str) + MT19937. This preserves 1.0 seeded choices
+// after moving the runtime from Python to Node.js.
+class PythonRandom {
+  constructor(seed) {
+    const bytes = Buffer.from(String(seed), "utf8");
+    const material = Buffer.concat([bytes, createHash("sha512").update(bytes).digest()]);
+    let integer = 0n;
+    for (const byte of material) integer = (integer << 8n) | BigInt(byte);
+    const key = [];
+    do { key.push(Number(integer & 0xffffffffn)); integer >>= 32n; } while (integer > 0n);
+    this.mt = new Uint32Array(624); this.index = 624;
+    this.mt[0] = 19650218;
+    for (let i = 1; i < 624; i++) this.mt[i] = (Math.imul(this.mt[i - 1] ^ (this.mt[i - 1] >>> 30), 1812433253) + i) >>> 0;
+    let i = 1, j = 0;
+    for (let k = Math.max(624, key.length); k; k--) {
+      this.mt[i] = ((this.mt[i] ^ Math.imul(this.mt[i - 1] ^ (this.mt[i - 1] >>> 30), 1664525)) + key[j] + j) >>> 0;
+      if (++i >= 624) { this.mt[0] = this.mt[623]; i = 1; }
+      if (++j >= key.length) j = 0;
+    }
+    for (let k = 623; k; k--) {
+      this.mt[i] = ((this.mt[i] ^ Math.imul(this.mt[i - 1] ^ (this.mt[i - 1] >>> 30), 1566083941)) - i) >>> 0;
+      if (++i >= 624) { this.mt[0] = this.mt[623]; i = 1; }
+    }
+    this.mt[0] = 0x80000000;
+  }
+  uint32() {
+    if (this.index >= 624) {
+      for (let i = 0; i < 624; i++) {
+        const y = (this.mt[i] & 0x80000000) | (this.mt[(i + 1) % 624] & 0x7fffffff);
+        this.mt[i] = this.mt[(i + 397) % 624] ^ (y >>> 1) ^ ((y & 1) ? 0x9908b0df : 0);
+      }
+      this.index = 0;
+    }
+    let y = this.mt[this.index++];
+    y ^= y >>> 11; y ^= (y << 7) & 0x9d2c5680; y ^= (y << 15) & 0xefc60000; y ^= y >>> 18;
+    return y >>> 0;
+  }
+  getrandbits(bits) {
+    if (bits <= 32) return this.uint32() >>> (32 - bits);
+    throw new Error("getrandbits above 32 bits is not needed by this catalog");
+  }
+  randbelow(n) {
+    const bits = Math.floor(Math.log2(n)) + 1;
+    let value;
+    do { value = this.getrandbits(bits); } while (value >= n);
+    return value;
+  }
 }
-function seededRng(seed) {
-  let state = seed == null ? randomBytes(4).readUInt32BE() : fnv1a(seed);
-  return () => { state += 0x6d2b79f5; let t = state; t = Math.imul(t ^ t >>> 15, t | 1); t ^= t + Math.imul(t ^ t >>> 7, t | 61); return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+class SystemRandom {
+  randbelow(n) {
+    const limit = Math.floor(0x100000000 / n) * n;
+    let value;
+    do { value = randomBytes(4).readUInt32BE(); } while (value >= limit);
+    return value % n;
+  }
 }
-const choice = (values, rng) => values[Math.floor(rng() * values.length)];
+const seededRng = seed => seed == null ? new SystemRandom() : new PythonRandom(seed);
+const choice = (values, rng) => values[rng.randbelow(values.length)];
 function sample(values, count, rng) {
   const copy = [...values];
-  for (let i = copy.length - 1; i > 0; i--) { const j = Math.floor(rng() * (i + 1)); [copy[i], copy[j]] = [copy[j], copy[i]]; }
-  return copy.slice(0, count);
+  const result = [];
+  for (let i = 0; i < count; i++) {
+    const j = rng.randbelow(copy.length - i);
+    result.push(copy[j]); copy[j] = copy[copy.length - i - 1];
+  }
+  return result;
 }
 
 const canonicalPreset = (value, catalog) => catalog.aliases?.[value] ?? value;
@@ -107,7 +159,7 @@ function choosePreset(config, catalog, rng) {
 
 function randomTraits(catalog, rng) {
   const traits = Object.fromEntries(Object.entries(catalog.axes).filter(([axis]) => axis !== "species").map(([axis, values]) => [axis, choice(values, rng)]));
-  if (rng() < 0.5) traits.species = choice(catalog.axes.species, rng);
+  if (choice([true, false], rng)) traits.species = choice(catalog.axes.species, rng);
   return traits;
 }
 function applyChaos(traits, catalog, rng, intensity) {
@@ -147,7 +199,7 @@ function applyCustom(signature, custom = {}) {
   return [merged, custom.display_name ?? null];
 }
 
-export function resolveCharacter(config, catalog, rng = seededRng(config.seed)) {
+export function resolveCharacter(config, catalog, rng = seededRng(config.seed), localeData = null) {
   validateConfig(config);
   const explicitlyConfigured = Object.keys(config).length > 0;
   const intensity = config.intensity ?? catalog.defaults.intensity;
@@ -172,6 +224,10 @@ export function resolveCharacter(config, catalog, rng = seededRng(config.seed)) 
   if (!catalog.modes.includes(mode)) throw new Error(`unknown mode: ${mode}`);
   if (["subtitle", "pure"].includes(mode) && !language) throw new Error(`mode ${mode} requires a character language`);
   const locale = config.locale === "en" ? "en" : "ko";
+  if (locale === "en" && localeData) {
+    displayName = localeData.display_names?.[preset] ?? displayName;
+    signature = localeData.signatures?.[preset] ?? signature;
+  }
   return { enabled: !["false", "off", "끄기"].includes(String(config.enabled ?? explicitlyConfigured).toLowerCase()), locale, strategy, preset, display_name: displayName, mode, intensity, traits, language, signature, chaos_changes: chaosChanges, seed: config.seed ?? null };
 }
 
@@ -189,8 +245,7 @@ export function buildPrompt(spec, skillDir, catalog) {
   if (languageProfile) extras.push(`Language profile=${JSON.stringify(languageProfile)}`);
   if (spec.signature) extras.push(`Preset signature=${JSON.stringify(spec.signature)}`);
   if (spec.chaos_changes && Object.keys(spec.chaos_changes).length) extras.push(`Chaos mutations=${JSON.stringify(spec.chaos_changes)}`);
-  const languageRule = spec.locale === "en" ? "Render any Korean catalog signature semantically in natural English; do not output Korean unless the user requests it or preserved content contains it." : "";
-  return `[With Character ON] Follow ${resolve(skillDir, "SKILL.md")}. Locale=${spec.locale}; strategy=${spec.strategy}; preset=${spec.preset}; character=${spec.display_name}; mode=${spec.mode}; intensity=${spec.intensity}; traits: ${traits}. ${modeInstruction(spec, languageProfile)}${extras.length ? ` ${extras.join(". ")}.` : ""}${languageRule ? ` ${languageRule}` : ""} Priority: accuracy/safety > preserved content > preset signature > speech mode > role > voice > relation > personality > embodiment > world > humor.`;
+  return `[With Character ON] Follow ${resolve(skillDir, "SKILL.md")}. Locale=${spec.locale}; strategy=${spec.strategy}; preset=${spec.preset}; character=${spec.display_name}; mode=${spec.mode}; intensity=${spec.intensity}; traits: ${traits}. ${modeInstruction(spec, languageProfile)}${extras.length ? ` ${extras.join(". ")}.` : ""} Priority: accuracy/safety > preserved content > preset signature > speech mode > role > voice > relation > personality > embodiment > world > humor.`;
 }
 
 function parseArgs(argv) {
@@ -214,7 +269,8 @@ export function main(argv = process.argv.slice(2)) {
   const catalog = JSON.parse(readFileSync(options.catalog, "utf8"));
   let config = parseConfig(options.config);
   if (options.freeze) config = freezeConfig(config);
-  const spec = resolveCharacter(config, catalog);
+  const localeData = config.locale === "en" ? JSON.parse(readFileSync(resolve(SCRIPT_DIR, "locales/en.json"), "utf8")) : null;
+  const spec = resolveCharacter(config, catalog, undefined, localeData);
   if (options.freeze) {
     mkdirSync(dirname(options.config), { recursive: true });
     const temporary = `${options.config}.tmp`;
