@@ -1,7 +1,7 @@
 ---
 description: 캐릭터를 쉽게 고르는 간단 도움말
 ---
-`scripts/catalog.json`의 프리셋을 팩별로 보여주되 내부 축 전체는 기본 도움말에 노출하지 마세요. 다음 네 단계를 먼저 안내하세요.
+사용자의 요청 언어로 답하세요. `scripts/catalog.json`의 프리셋을 팩별로 보여주되 내부 축 전체는 기본 도움말에 노출하지 마세요. 다음 네 단계를 먼저 안내하세요.
 
 ```text
 /with-character:set dog                     # 프리셋

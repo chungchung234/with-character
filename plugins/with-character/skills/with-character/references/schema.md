@@ -6,11 +6,14 @@ Most users select only a preset:
 ---
 schema_version: 1
 enabled: true
+locale: en
 preset: dog
 ---
 ```
 
 `schema_version` is `1`. Configuration files without this field are treated as version 1 for backward compatibility and gain the field the next time they are frozen. Unsupported future versions and unknown top-level fields fail validation instead of being silently ignored.
+
+`locale` accepts `ko` or `en` and controls useful prose and subtitle translations. Existing files without it default to `ko`. The `/set` command resolves the request language with the host LLM and stores an explicit locale, so no static language parser is required.
 
 ## Selection strategies
 

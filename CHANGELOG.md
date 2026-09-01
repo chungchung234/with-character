@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.1.0
+
+- Remove the Python runtime dependency; the session hook and validator now use Node.js with no third-party packages.
+- Add `locale: ko|en` so character responses and subtitle translations work naturally in Korean or English.
+- Add an English README and language switch links using the conventional `README.md` / `README.ko.md` layout.
+- Keep locale data out of the injected prompt except for the active character, avoiding duplicate catalog context.
+- Seeded choices remain stable on Node.js, but an existing 1.0 Python-generated seed may resolve to a different combination once after upgrading.
+
 ## 1.0.0
 
 - Provide 64 curated character presets across anime, fantasy, science fiction, professional, animal, and comedy packs.
