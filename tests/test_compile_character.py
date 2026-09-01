@@ -102,6 +102,17 @@ class CompilerTest(unittest.TestCase):
             result = self.resolve({"preset": alias})
             self.assertIn(result["preset"], CATALOG["packs"]["anime"])
 
+    def test_researched_genre_presets_are_available_in_korean(self):
+        examples = {
+            "소년만화 주인공": ("anime-shonen-hero", "anime-male"),
+            "성기사": ("holy-paladin", "fantasy"),
+            "우주 해병": ("space-marine", "sci-fi"),
+        }
+        for alias, (preset, pack) in examples.items():
+            result = self.resolve({"preset": alias})
+            self.assertEqual(preset, result["preset"])
+            self.assertIn(preset, CATALOG["packs"][pack])
+
     def test_llm_structured_custom_nuance_is_compiled(self):
         config = {
             "preset": "robot-operator",
@@ -147,8 +158,9 @@ class CompilerTest(unittest.TestCase):
 
     def test_all_presets_have_valid_traits(self):
         required = {"embodiment", "identity", "role", "personality", "world", "voice", "relation", "humor"}
-        self.assertGreaterEqual(len(CATALOG["presets"]), 40)
-        self.assertEqual(11, len(CATALOG["packs"]["anime"]))
+        self.assertGreaterEqual(len(CATALOG["presets"]), 64)
+        self.assertEqual(19, len(CATALOG["packs"]["anime"]))
+        self.assertEqual(8, len(CATALOG["packs"]["anime-male"]))
         for name, definition in CATALOG["presets"].items():
             self.assertTrue(required.issubset(definition["traits"]), name)
             for axis, value in definition["traits"].items():

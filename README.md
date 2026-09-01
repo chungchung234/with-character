@@ -61,7 +61,7 @@ details:
 
 `embodiment`와 `species`는 독립적이므로 로봇 강아지, 정령 여우 같은 혼합 캐릭터를 만들 수 있습니다.
 
-## 프리셋 캐릭터 40종과 답변 예시
+## 프리셋 캐릭터 64종과 답변 예시
 
 아래 예시는 모두 사용자가 **“42번째 줄에서 null 오류를 찾았어”**라고 말한 상황입니다. 실제 답변은 작업 내용에 맞게 달라지지만 캐릭터의 말투와 반응 방식은 유지됩니다.
 
@@ -78,6 +78,14 @@ details:
 | 애니 | `anime-neko` | 애니 네코 | “냐앗?! 42번째 줄에서 null 냄새가 난다냥! 잡으러 가자냥!” |
 | 애니 | `anime-kusogaki` | 애니 쿠소가키 | “어라라~ 42번째 줄을 이제 찾았어요~? 자, 그래도 해결은 제대로 해드릴게요♡” |
 | 애니 | `anime-chuuni` | 애니 중2병 | “쿠쿠쿠… 계약자여, 42번째 봉인에서 ‘무(null)’가 깨어났군.” |
+| 애니 남성 | `anime-shonen-hero` | 소년만화 주인공 | “좋아! 42번째 줄을 찾았으니 이제 한 단계 더 성장할 차례야!” |
+| 애니 남성 | `anime-cool-rival` | 쿨 라이벌 | “42행인가. 나쁘지 않은 발견이군. 이제 원인까지 증명해 봐.” |
+| 애니 남성 | `anime-delinquent-senpai` | 불량 선배 | “잘 찾았다, 후배. 그 null 자식은 선배가 같이 정리해 주지.” |
+| 애니 남성 | `anime-gentle-bishonen` | 다정한 미소년 | “잘 발견하셨어요. 42번째 줄부터 차분히 살펴보면 어렵지 않을 거예요.” |
+| 애니 남성 | `anime-genius-strategist` | 애니 천재 책사 | “예상 범위 안입니다. 42행을 기점으로 유입 경로는 세 갈래로 압축됩니다.” |
+| 애니 남성 | `anime-hotblooded-captain` | 열혈 주장 | “좋아, 42행 확보! 원인 추적과 회귀 테스트로 나눠서 단숨에 간다!” |
+| 애니 남성 | `anime-mysterious-mentor` | 수수께끼 스승 | “오, 42행을 봤구나. 그럼 null이 처음 태어난 곳은 어디일까?” |
+| 애니 남성 | `anime-comic-best-friend` | 개그 절친 | “42행에서 잡았다고? 야, null도 숨을 곳을 좀 잘 고르지! 같이 잡자.” |
 | 전문가 | `gentleman-detective` | 신사 탐정 | “훌륭한 단서입니다. 범인은 42번째 줄의 null, 이제 유입 경로를 추적하지요.” |
 | 전문가 | `robot-operator` | 로봇 오퍼레이터 | “오류 지점 확인: 42행. null 유입 경로 분석을 시작합니다.” |
 | 동료 | `robot-butler` | 로봇 집사 | “탁월한 발견입니다. 42번째 줄의 null 처리는 제가 정갈하게 보조하겠습니다.” |
@@ -90,10 +98,26 @@ details:
 | 판타지 | `dwarf-smith` | 드워프 대장장이 | “좋은 균열을 찾았군! 42행을 다시 달구고 테스트로 단단히 벼리자고!” |
 | 판타지 | `slime-merchant` | 슬라임 상인 | “찰랑! 42행 null 수정과 회귀 테스트, 두 개 묶어서 좋은 조건에 드릴게요!” |
 | 판타지 | `necromancer-scholar` | 네크로맨서 학자 | “42번째 줄의 죽은 참조가 깨어났군요. 생성 시점의 기록부터 소환해 봅시다.” |
+| 판타지 | `holy-paladin` | 성기사 | “훌륭한 발견입니다. 42행을 보호하고 같은 위험이 돌아오지 않게 맹세하겠습니다.” |
+| 판타지 | `wandering-bard` | 방랑 음유시인 | “마흔두 번째 줄에서 빈 값이 노래하니, 그 시작을 찾아 이야기를 고쳐봅시다.” |
+| 판타지 | `shadow-rogue` | 그림자 도적 | “42행의 빈틈 확인. 가장 작은 수정으로 조용히 막고 빠져나가지.” |
+| 판타지 | `nature-druid` | 숲의 드루이드 | “42번째 가지가 말랐구나. 값이 흐르는 뿌리부터 살펴 균형을 되찾자.” |
+| 판타지 | `berserker-warrior` | 광전사 | “42행의 null인가! 당장 돌격한다—물론 테스트부터 세우고!” |
+| 판타지 | `pact-warlock` | 계약 흑마법사 | “42행의 계약 조항이 비었군요. 의존성과 대가부터 다시 검토하지요.” |
+| 판타지 | `battle-cleric` | 전투 사제 | “42행의 손상을 확인했습니다. 격리하고 복구한 뒤 재발을 막겠습니다.” |
+| 판타지 | `wandering-monk` | 방랑 무도가 | “42행. 빈 값. 원인은 하나씩 걷어내면 드러난다. 서두르지 말게.” |
 | SF | `space-captain` | 우주 함장 | “좋은 발견이다, 승무원. 42행을 격리하고 null의 항로부터 역추적한다.” |
 | SF | `cyberpunk-hacker` | 사이버펑크 해커 | “42행에서 신호 잡았어. null이 들어온 로그 라인을 따라가면 돼.” |
 | SF | `android-medic` | 안드로이드 의무관 | “증상 위치는 42행입니다. null 유입 원인을 진단한 뒤 안전하게 처치하겠습니다.” |
 | SF | `alien-researcher` | 외계인 연구원 | “흥미롭군요. 인간의 42번째 줄은 값이 없어도 실행을 시도하는군요. 원인을 채집합시다.” |
+| SF | `space-marine` | 우주 해병 | “위협 위치 42행. 유입 경로 확보 후 수정과 검증 순으로 진입한다.” |
+| SF | `space-bounty-hunter` | 우주 현상금 사냥꾼 | “표적 확인, 42행의 null. 로그에 남은 흔적으로 고향까지 추적하지.” |
+| SF | `starship-engineer` | 함선 기관사 | “42번 회로에서 누출이야. 격리하고 우회한 다음 제대로 뜯어고치자고.” |
+| SF | `rogue-smuggler` | 우주 밀수꾼 | “42행 검문소에 null이 걸렸군. 합법적이고 안전한 우회로 하나 알아.” |
+| SF | `mad-scientist` | 광기 과학자 | “하하하! 42행에서 완벽한 null 표본을 발견했다! 격리 테스트를 시작하지!” |
+| SF | `synthetic-detective` | 합성인간 탐정 | “단서: 42행 null. 추론: 상류 값 누락. 현재 확신도 78%입니다.” |
+| SF | `time-traveler` | 시간 여행자 | “42행을 고친 시간선과 그대로 둔 시간선을 비교해 봤어요. 회귀 테스트가 관건입니다.” |
+| SF | `resistance-pilot` | 저항군 파일럿 | “42행에 목표 포착! 체크리스트 확인하고 한 번에 수정 경로로 진입하자!” |
 | 전문가 | `strict-coach` | 엄격한 코치 | “좋아, 42행 발견. 이제 유입 경로 확인, 수정, 회귀 테스트까지 쉬지 않고 간다.” |
 | 전문가 | `cheerful-tutor` | 명랑한 튜터 | “잘 찾았어요! 이제 42번째 줄에 null이 어떻게 들어왔는지 한 단계씩 따라가 봐요.” |
 | 전문가 | `veteran-engineer` | 베테랑 엔지니어 | “42행 확인. 수정 전에 재현 테스트와 영향 범위부터 잡죠. 롤백 지점도 남기고요.” |
@@ -108,7 +132,7 @@ details:
 | 동물·개그 | `caveman` | 원시인 개발자 | “우가! 42줄 나쁜 빈 돌 찾았다! 원시인 고친다!” |
 | 동료·개그 | `loyal-younger-brother` | 건달이 | “헴!!! 이 건방진 null 자식이 42번째 줄에 숨어 있었습니다!!! 제가 바로 정리하겠습니다, 헴!!!” |
 
-표의 프리셋 ID나 표시 이름을 그대로 사용할 수 있습니다. 예를 들어 `/with-character:set dog`, `/with-character:set 원시인`, `/with-character:set 쿠데레`, `/with-character:set 해적 선장`, `/with-character:set 건달이`가 모두 동작합니다. 팩 랜덤은 `random anime`, `random fantasy`, `random sci-fi`, `random professional`, `random adventure`, `random comedy`처럼 요청할 수 있습니다.
+표의 프리셋 ID나 표시 이름을 그대로 사용할 수 있습니다. 예를 들어 `/with-character:set dog`, `/with-character:set 원시인`, `/with-character:set 쿨 라이벌`, `/with-character:set 성기사`, `/with-character:set 우주 해병`, `/with-character:set 건달이`가 모두 동작합니다. 팩 랜덤은 `random anime`, `random anime-male`, `random fantasy`, `random sci-fi`, `random professional`, `random adventure`, `random comedy`처럼 요청할 수 있습니다.
 
 ### 건달이
 
@@ -130,7 +154,16 @@ Chaos는 알아볼 수 있는 기본 캐릭터를 남겨 두고 일부 설정만
 | `/with-character:set 건달이에 chaos를 넣고 판타지 마법사로 해줘` | 헴을 모시는 건달 마법사 | “헴!!! 42번째 룬에 숨어든 null 마물, 제가 불덩이로 예의 바르게 조지겠습니다!!!” |
 | `/with-character:set chaos random` | 고풍스러운 츤데레 로봇 강아지 의사 | “진단 완료다, 멍. 42행이 아픈 것뿐이니 호들갑 떨지 말거라! 삐빅!” |
 
-`random`은 위의 완성형 프리셋 40개 중 하나를 고르고, `chaos random`은 캐릭터의 몸·역할·성격·세계관·말투까지 처음부터 섞습니다. 웃기되 안정적인 결과가 필요하면 `dog chaos`처럼 기본 프리셋을 지정하는 편이 좋습니다.
+`random`은 위의 완성형 프리셋 64개 중 하나를 고르고, `chaos random`은 캐릭터의 몸·역할·성격·세계관·말투까지 처음부터 섞습니다. 웃기되 안정적인 결과가 필요하면 `dog chaos`처럼 기본 프리셋을 지정하는 편이 좋습니다.
+
+### 프리셋 선정 기준
+
+특정 작품의 고유 캐릭터를 복제하지 않고 여러 작품에서 반복되는 장르 아키타입만 사용합니다. 애니 남성 팩은 소년만화의 성장형 주인공과 라이벌 구조, 미소년·선후배·스승 역할을 기준으로 삼았습니다. 판타지는 전사·도적·성직자·마법 사용자로 이어지는 고전 파티 역할을, SF는 우주 해병과 과학자·의무관·탐험가로 치환되는 역할 구조를 참고했습니다.
+
+- [Shōnen manga의 성장·수련·라이벌 구조](https://en.wikipedia.org/wiki/Sh%C5%8Dnen_manga)
+- [Bishōnen 캐릭터 유형 연구](https://johokan.kyoto-seika.ac.jp/uploads/2019_dr/2019_dr_thesis_01.pdf)
+- [고전 판타지 캐릭터 클래스와 역할](https://en.wikipedia.org/wiki/Character_class_%28Dungeons_%26_Dragons%29)
+- [SF의 대표적인 우주 해병 아키타입](https://en.wikipedia.org/wiki/Space_marine)
 
 ## 설치
 
