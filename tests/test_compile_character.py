@@ -93,6 +93,15 @@ class CompilerTest(unittest.TestCase):
         self.assertIn("여러 개의 느낌표", prompt)
         self.assertIn("안전과 정확성", prompt)
 
+    def test_original_anime_archetypes_are_available_in_korean(self):
+        expected = {
+            "데레데레", "츤데레", "쿠데레", "단데레", "겐키", "얀데레",
+            "오네상", "오죠사마", "네코", "쿠소가키", "중2병"
+        }
+        for alias in expected:
+            result = self.resolve({"preset": alias})
+            self.assertIn(result["preset"], CATALOG["packs"]["anime"])
+
     def test_llm_structured_custom_nuance_is_compiled(self):
         config = {
             "preset": "robot-operator",
@@ -138,6 +147,8 @@ class CompilerTest(unittest.TestCase):
 
     def test_all_presets_have_valid_traits(self):
         required = {"embodiment", "identity", "role", "personality", "world", "voice", "relation", "humor"}
+        self.assertGreaterEqual(len(CATALOG["presets"]), 40)
+        self.assertEqual(11, len(CATALOG["packs"]["anime"]))
         for name, definition in CATALOG["presets"].items():
             self.assertTrue(required.issubset(definition["traits"]), name)
             for axis, value in definition["traits"].items():
