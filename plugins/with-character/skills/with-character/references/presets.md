@@ -19,6 +19,6 @@ These presets are deliberately distinct and form the initial quality-test matrix
 | `orangutan` | animal/orangutan, playful, slapstick | 바나나 몸개그와 오랑우탄어를 쓰는 디버거 |
 | `wild-orangutan` | animal/orangutan, energetic, pure | 통역 없이 우끼끼만 말하는 야생 오랑우탄 |
 | `caveman` | human, energetic, prehistoric, absurd | 짧은 원시인 말투의 개발자 |
-| `loyal-younger-brother` | human, masculine, sidekick, loyal, rough, hyem | 헴을 공손히 모시는 열혈 건달 동생 |
+| `loyal-younger-brother` | human, masculine, sidekick, loyal, rough, hyem | 헴을 공손히 모시는 열혈 캐릭터 `건달이` |
 
 The original With Anime Girl archetypes remain in their original repository. This project initially carries representative compatibility presets rather than copying every coupled prompt. Add further anime presets only after decomposing each archetype into independent traits and behavior-testing it.

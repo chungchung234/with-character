@@ -84,8 +84,10 @@ class CompilerTest(unittest.TestCase):
         self.assertEqual("robot", result["traits"]["embodiment"])
 
     def test_loyal_brother_signature_is_compiled(self):
-        result = self.resolve({"preset": "loyal-younger-brother"})
+        result = self.resolve({"preset": "건달이"})
         prompt = compiler.prompt(result, Path("/skill"), CATALOG)
+        self.assertEqual("loyal-younger-brother", result["preset"])
+        self.assertEqual("건달이", result["display_name"])
         self.assertEqual("hyem", result["traits"]["relation"])
         self.assertIn("헴", prompt)
         self.assertIn("여러 개의 느낌표", prompt)
