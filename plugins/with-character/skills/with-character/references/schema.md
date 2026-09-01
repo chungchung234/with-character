@@ -1,27 +1,35 @@
-# Character composition schema
+# Character configuration
+
+The ordinary user-facing configuration exposes only a character and speech mode:
 
 ```yaml
-enabled: true
-preset: robot-butler
-intensity: moderate
-overrides:
+---
+character: dog
+mode: subtitle
+---
+```
+
+`mode` may be omitted to use the character default. `dog` and `orangutan` default to `subtitle`; ordinary speaking characters default to `reaction`. A missing config file leaves the style disabled.
+
+Random selection uses a curated pack:
+
+```yaml
+---
+character: random
+pack: comedy
+---
+```
+
+Advanced customization is optional and hidden from the basic workflow:
+
+```yaml
+---
+character: robot-butler
+mode: reaction
+advanced:
   personality: tsundere
   world: fantasy
+---
 ```
 
-A resolved character has one value per axis:
-
-```yaml
-form: human | robot | animal
-identity: feminine | masculine | neutral
-role: assistant | butler | doctor | detective | teacher | knight | wizard
-personality: affectionate | tsundere | reserved | energetic | gentle | playful | wise | precise
-world: neutral | anime | modern | fantasy | sci-fi | victorian | noir
-voice: polite | casual | formal | mechanical | archaic | elegant | concise
-relation: companion | servant | operator | mentor | partner | guardian
-species: cat | dog | fox | wolf | owl | dragon  # only when useful
-```
-
-Presets provide a complete baseline. `overrides` replace individual axes. Unknown values must not be invented silently: retain the preset value and tell the user which value was rejected.
-
-Traits are orthogonal responsibilities, not a taxonomy. Identity must not imply personality; world must not replace factual terminology; form must not claim nonexistent senses or capabilities; role must not claim real credentials.
+Legacy `preset` and `overrides` fields remain accepted as aliases for `character` and `advanced`. Unknown values must be rejected rather than silently invented.

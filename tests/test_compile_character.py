@@ -1,5 +1,6 @@
 import importlib.util
 import json
+import random
 import tempfile
 import unittest
 from pathlib import Path
@@ -23,43 +24,89 @@ class CompilerTest(unittest.TestCase):
             path.write_text(body, encoding="utf-8")
             return compiler.parse_config(path)
 
-    def test_default_is_robot_operator(self):
-        result = compiler.resolve({}, self.catalog)
-        self.assertEqual("robot-operator", result["preset"])
-        self.assertEqual("robot", result["traits"]["form"])
+    def resolve(self, config):
+        return compiler.resolve(config, self.catalog, rng=random.Random(7))
 
-    def test_overrides_are_composed(self):
-        config = self.parse("---\npreset: robot-butler\nintensity: full\noverrides:\n  personality: tsundere\n  world: fantasy\n---\n")
-        result = compiler.resolve(config, self.catalog)
-        self.assertEqual("butler", result["traits"]["role"])
+    def test_missing_config_keeps_style_disabled(self):
+        result = self.resolve({})
+        self.assertFalse(result["enabled"])
+
+    def test_simple_dog_config_enables_subtitle_default(self):
+        result = self.resolve({"character": "dog"})
+        self.assertTrue(result["enabled"])
+        self.assertEqual("subtitle", result["mode"])
+        self.assertEqual("dog", result["language"])
+
+    def test_simple_config_file_is_parsed(self):
+        config = self.parse("---\nenabled: true\ncharacter: dog\nmode: reaction\n---\n")
+        result = self.resolve(config)
+        self.assertEqual("dog", result["character"])
+        self.assertEqual("reaction", result["mode"])
+
+    def test_korean_alias_is_supported(self):
+        result = self.resolve({"character": "오랑우탄", "mode": "pure"})
+        self.assertEqual("orangutan", result["character"])
+        self.assertEqual("pure", result["mode"])
+
+    def test_subtitle_prompt_requires_language_and_translation(self):
+        result = self.resolve({"character": "dog", "mode": "subtitle"})
+        prompt = compiler.prompt(result, Path("/skill"), self.catalog)
+        self.assertIn("only the selected character language", prompt)
+        self.assertIn("(통역: ...)", prompt)
+        self.assertIn("꼬리 흔들기", prompt)
+
+    def test_pure_prompt_forbids_translation_but_preserves_code(self):
+        result = self.resolve({"character": "orangutan", "mode": "pure"})
+        prompt = compiler.prompt(result, Path("/skill"), self.catalog)
+        self.assertIn("do not add a translation", prompt)
+        self.assertIn("preserved code", prompt)
+        self.assertIn("바나나 내려놓기", prompt)
+
+    def test_reaction_mode_keeps_normal_korean(self):
+        result = self.resolve({"character": "dog", "mode": "reaction"})
+        prompt = compiler.prompt(result, Path("/skill"), self.catalog)
+        self.assertIn("normal Korean", prompt)
+
+    def test_ordinary_character_rejects_pure_mode(self):
+        with self.assertRaisesRegex(ValueError, "does not support mode pure"):
+            self.resolve({"character": "robot-butler", "mode": "pure"})
+
+    def test_random_comedy_stays_inside_pack(self):
+        result = self.resolve({"character": "random", "pack": "comedy"})
+        self.assertIn(result["character"], self.catalog["packs"]["comedy"])
+
+    def test_random_pack_filters_by_requested_mode(self):
+        result = self.resolve({"character": "random", "pack": "animal", "mode": "pure"})
+        self.assertIn(result["character"], {"dog", "orangutan"})
+
+    def test_random_pack_rejects_unsupported_mode(self):
+        with self.assertRaisesRegex(ValueError, "has no character supporting mode pure"):
+            self.resolve({"character": "random", "pack": "fantasy", "mode": "pure"})
+
+    def test_legacy_preset_and_overrides_remain_supported(self):
+        result = self.resolve({"preset": "robot-butler", "overrides": {"personality": "tsundere"}})
+        self.assertEqual("robot-butler", result["character"])
         self.assertEqual("tsundere", result["traits"]["personality"])
-        self.assertEqual("fantasy", result["traits"]["world"])
 
-    def test_species_is_removed_from_non_animal_override(self):
-        result = compiler.resolve({"preset":"fox-wizard", "overrides":{"form":"robot"}}, self.catalog)
-        self.assertNotIn("species", result["traits"])
-
-    def test_unknown_value_is_rejected(self):
+    def test_advanced_values_are_validated(self):
         with self.assertRaisesRegex(ValueError, "unknown world"):
-            compiler.resolve({"preset":"robot-butler", "overrides":{"world":"office-fantasy"}}, self.catalog)
+            self.resolve({"character": "dog", "advanced": {"world": "office-fantasy"}})
 
-    def test_unknown_intensity_is_rejected(self):
-        with self.assertRaisesRegex(ValueError, "unknown intensity"):
-            compiler.resolve({"intensity":"maximum"}, self.catalog)
-
-    def test_presets_have_required_axes_and_valid_values(self):
-        required = {"form", "identity", "role", "personality", "world", "voice", "relation"}
-        for name, preset in self.catalog["presets"].items():
-            self.assertTrue(required.issubset(preset), name)
-            for axis, value in preset.items():
-                self.assertIn(value, self.catalog["axes"][axis], f"{name}:{axis}")
-
-    def test_presets_resolve_to_unique_combinations(self):
+    def test_characters_have_valid_unique_combinations(self):
+        required = {"form", "identity", "role", "personality", "world", "voice", "relation", "humor"}
         combinations = []
-        for name in self.catalog["presets"]:
-            traits = compiler.resolve({"preset": name}, self.catalog)["traits"]
+        for name, definition in self.catalog["characters"].items():
+            traits = definition["traits"]
+            self.assertTrue(required.issubset(traits), name)
+            for axis, value in traits.items():
+                self.assertIn(value, self.catalog["axes"][axis], f"{name}:{axis}")
             combinations.append(tuple(sorted(traits.items())))
         self.assertEqual(len(combinations), len(set(combinations)))
+
+    def test_language_vocabularies_do_not_overlap_core_sounds(self):
+        dog = set(sum(self.catalog["language_profiles"]["dog"]["sounds"].values(), []))
+        orangutan = set(sum(self.catalog["language_profiles"]["orangutan"]["sounds"].values(), []))
+        self.assertTrue(dog.isdisjoint(orangutan))
 
 
 if __name__ == "__main__":

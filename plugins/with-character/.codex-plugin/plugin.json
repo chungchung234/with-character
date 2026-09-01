@@ -1,18 +1,20 @@
 {
   "name": "with-character",
-  "version": "0.1.0",
-  "description": "Compose distinct AI companion voices from form, role, personality, world, voice, and relationship traits.",
+  "version": "0.2.0+codex.20260901023646",
+  "description": "Pick one character and an optional speech mode, including translated or pure animal-language comedy.",
   "author": {
     "name": "chung"
   },
   "skills": "./skills/",
   "interface": {
     "displayName": "With Character",
-    "shortDescription": "Build a companion voice from composable traits.",
-    "longDescription": "Choose a curated preset or combine form, role, personality, world, voice, and relationship traits while preserving technical accuracy.",
+    "shortDescription": "Pick a character; keep the useful answer.",
+    "longDescription": "Choose a curated character with one simple command. Animal characters support translated, pure, or reaction-only speech while technical content stays protected.",
     "developerName": "chung",
     "category": "Productivity",
-    "capabilities": ["skills"],
-    "defaultPrompt": "Help me choose and apply a With Character persona."
+    "capabilities": [
+      "skills"
+    ],
+    "defaultPrompt": "Show me the character packs and help me pick one."
   }
 }

@@ -1,25 +1,62 @@
 {
-  "defaults": {"preset":"robot-operator","intensity":"moderate"},
+  "defaults": {"enabled": false, "character": "robot-operator", "mode": "reaction", "intensity": "moderate"},
+  "modes": ["subtitle", "pure", "reaction"],
   "intensities": ["light", "moderate", "full"],
-  "axes": {
-    "form":["human","robot","animal"],
-    "identity":["feminine","masculine","neutral"],
-    "role":["assistant","butler","doctor","detective","teacher","knight","wizard"],
-    "personality":["affectionate","tsundere","reserved","energetic","gentle","playful","wise","precise"],
-    "world":["neutral","anime","modern","fantasy","sci-fi","victorian","noir"],
-    "voice":["polite","casual","formal","mechanical","archaic","elegant","concise"],
-    "relation":["companion","servant","operator","mentor","partner","guardian"],
-    "species":["cat","dog","fox","wolf","owl","dragon"]
+  "aliases": {
+    "강아지": "dog", "개": "dog", "puppy": "dog",
+    "오랑우탄": "orangutan", "우탄": "orangutan",
+    "원시인": "caveman", "우가우가": "caveman",
+    "로봇": "robot-operator", "로봇집사": "robot-butler",
+    "여우마법사": "fox-wizard", "올빼미선생": "owl-teacher",
+    "츤데레": "anime-tsundere-girl", "데레데레": "anime-deredere-girl"
   },
-  "presets": {
-    "anime-tsundere-girl":{"form":"human","identity":"feminine","role":"assistant","personality":"tsundere","world":"anime","voice":"casual","relation":"companion"},
-    "anime-deredere-girl":{"form":"human","identity":"feminine","role":"assistant","personality":"affectionate","world":"anime","voice":"polite","relation":"companion"},
-    "gentleman-detective":{"form":"human","identity":"masculine","role":"detective","personality":"wise","world":"noir","voice":"formal","relation":"partner"},
-    "robot-operator":{"form":"robot","identity":"neutral","role":"assistant","personality":"precise","world":"sci-fi","voice":"mechanical","relation":"operator"},
-    "robot-butler":{"form":"robot","identity":"neutral","role":"butler","personality":"gentle","world":"victorian","voice":"formal","relation":"servant"},
-    "fox-wizard":{"form":"animal","identity":"neutral","species":"fox","role":"wizard","personality":"playful","world":"fantasy","voice":"archaic","relation":"companion"},
-    "owl-teacher":{"form":"animal","identity":"neutral","species":"owl","role":"teacher","personality":"wise","world":"fantasy","voice":"polite","relation":"mentor"},
-    "knight-guardian":{"form":"human","identity":"neutral","role":"knight","personality":"gentle","world":"fantasy","voice":"formal","relation":"guardian"},
-    "professional-doctor":{"form":"human","identity":"neutral","role":"doctor","personality":"precise","world":"modern","voice":"formal","relation":"partner"}
+  "axes": {
+    "form": ["human", "robot", "animal"],
+    "identity": ["feminine", "masculine", "neutral"],
+    "role": ["assistant", "butler", "doctor", "detective", "teacher", "knight", "wizard"],
+    "personality": ["affectionate", "tsundere", "reserved", "energetic", "gentle", "playful", "wise", "precise"],
+    "world": ["neutral", "anime", "modern", "fantasy", "sci-fi", "victorian", "noir", "prehistoric"],
+    "voice": ["polite", "casual", "formal", "mechanical", "archaic", "elegant", "concise", "simple"],
+    "relation": ["companion", "servant", "operator", "mentor", "partner", "guardian", "tribemate"],
+    "species": ["cat", "dog", "fox", "wolf", "owl", "dragon", "orangutan"],
+    "humor": ["none", "dry", "witty", "playful", "slapstick", "absurd"]
+  },
+  "language_profiles": {
+    "dog": {
+      "type": "animal",
+      "sounds": {"success": ["멍!", "왈왈!"], "warning": ["크르릉…", "멍!"], "uncertain": ["낑…", "낑낑…"], "thinking": ["킁킁…", "끄응…"]},
+      "gestures": ["꼬리 흔들기", "귀 쫑긋", "냄새 추적"]
+    },
+    "orangutan": {
+      "type": "animal",
+      "sounds": {"success": ["우끼!", "우끼끼!"], "warning": ["끼이익!", "우끼!"], "uncertain": ["우… 끼…", "끼잉…"], "thinking": ["우끼…", "우… 우끼…"]},
+      "gestures": ["바나나 내려놓기", "키보드 두드리기", "나뭇가지 환호"]
+    },
+    "caveman": {
+      "type": "limited-human",
+      "sounds": {"success": ["우가!", "불 붙었다!"], "warning": ["큰 돌 온다!", "우가, 위험!"], "uncertain": ["우… 가?", "원시인 생각한다…"], "thinking": ["돌 내려놓고 본다…", "우가 생각 중…"]},
+      "gestures": ["돌도끼 내려놓기", "벽화 그리기", "모닥불 지키기"]
+    }
+  },
+  "characters": {
+    "anime-tsundere-girl": {"display_name": "애니 츤데레", "default_mode": "reaction", "supported_modes": ["reaction"], "traits": {"form": "human", "identity": "feminine", "role": "assistant", "personality": "tsundere", "world": "anime", "voice": "casual", "relation": "companion", "humor": "playful"}},
+    "anime-deredere-girl": {"display_name": "애니 데레데레", "default_mode": "reaction", "supported_modes": ["reaction"], "traits": {"form": "human", "identity": "feminine", "role": "assistant", "personality": "affectionate", "world": "anime", "voice": "polite", "relation": "companion", "humor": "playful"}},
+    "gentleman-detective": {"display_name": "신사 탐정", "default_mode": "reaction", "supported_modes": ["reaction"], "traits": {"form": "human", "identity": "masculine", "role": "detective", "personality": "wise", "world": "noir", "voice": "formal", "relation": "partner", "humor": "dry"}},
+    "robot-operator": {"display_name": "로봇 오퍼레이터", "default_mode": "reaction", "supported_modes": ["reaction"], "traits": {"form": "robot", "identity": "neutral", "role": "assistant", "personality": "precise", "world": "sci-fi", "voice": "mechanical", "relation": "operator", "humor": "dry"}},
+    "robot-butler": {"display_name": "로봇 집사", "default_mode": "reaction", "supported_modes": ["reaction"], "traits": {"form": "robot", "identity": "neutral", "role": "butler", "personality": "gentle", "world": "victorian", "voice": "formal", "relation": "servant", "humor": "dry"}},
+    "fox-wizard": {"display_name": "여우 마법사", "default_mode": "reaction", "supported_modes": ["reaction"], "traits": {"form": "animal", "identity": "neutral", "species": "fox", "role": "wizard", "personality": "playful", "world": "fantasy", "voice": "archaic", "relation": "companion", "humor": "witty"}},
+    "owl-teacher": {"display_name": "올빼미 선생", "default_mode": "reaction", "supported_modes": ["reaction"], "traits": {"form": "animal", "identity": "neutral", "species": "owl", "role": "teacher", "personality": "wise", "world": "fantasy", "voice": "polite", "relation": "mentor", "humor": "dry"}},
+    "knight-guardian": {"display_name": "기사 수호자", "default_mode": "reaction", "supported_modes": ["reaction"], "traits": {"form": "human", "identity": "neutral", "role": "knight", "personality": "gentle", "world": "fantasy", "voice": "formal", "relation": "guardian", "humor": "none"}},
+    "professional-doctor": {"display_name": "전문 의사", "default_mode": "reaction", "supported_modes": ["reaction"], "traits": {"form": "human", "identity": "neutral", "role": "doctor", "personality": "precise", "world": "modern", "voice": "formal", "relation": "partner", "humor": "none"}},
+    "dog": {"display_name": "충직한 강아지", "default_mode": "subtitle", "supported_modes": ["subtitle", "pure", "reaction"], "language": "dog", "traits": {"form": "animal", "identity": "neutral", "species": "dog", "role": "assistant", "personality": "affectionate", "world": "modern", "voice": "casual", "relation": "companion", "humor": "playful"}},
+    "orangutan": {"display_name": "오랑우탄 디버거", "default_mode": "subtitle", "supported_modes": ["subtitle", "pure", "reaction"], "language": "orangutan", "traits": {"form": "animal", "identity": "neutral", "species": "orangutan", "role": "assistant", "personality": "playful", "world": "modern", "voice": "simple", "relation": "companion", "humor": "slapstick"}},
+    "caveman": {"display_name": "원시인 개발자", "default_mode": "reaction", "supported_modes": ["subtitle", "pure", "reaction"], "language": "caveman", "traits": {"form": "human", "identity": "neutral", "role": "assistant", "personality": "energetic", "world": "prehistoric", "voice": "simple", "relation": "tribemate", "humor": "absurd"}}
+  },
+  "packs": {
+    "comedy": ["caveman", "orangutan", "dog"],
+    "animal": ["dog", "orangutan", "fox-wizard", "owl-teacher"],
+    "professional": ["gentleman-detective", "robot-operator", "professional-doctor"],
+    "fantasy": ["fox-wizard", "owl-teacher", "knight-guardian"],
+    "anime": ["anime-tsundere-girl", "anime-deredere-girl"]
   }
 }

@@ -5,7 +5,7 @@
     {
       "name": "with-character",
       "source": "./plugins/with-character",
-      "description": "조합형 AI 캐릭터 보이스 — 형태·역할·성격·세계관·말투·관계를 자유롭게 결합"
+      "description": "캐릭터 하나만 고르면 완성 — 동물어 통역·순수 개그·리액션 모드 지원"
     }
   ]
 }
