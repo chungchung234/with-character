@@ -19,6 +19,8 @@
 
 With Character is a Claude Code plugin and Codex skill that changes conversational voice, relationship, world, and reactions while preserving technical accuracy. Pick a polished preset, ask for a random character, remix one with Chaos, or describe a custom persona in natural English or Korean.
 
+![With Character orangutan debugging demo](assets/orangutan-demo.png)
+
 ```text
 You: I found the null error on line 42.
 

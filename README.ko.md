@@ -19,6 +19,8 @@
 
 With Character는 Claude Code와 Codex의 정확성과 기술 원문은 보존하면서 말투·관계·세계관·리액션을 바꾸는 캐릭터 플러그인입니다. 검증된 프리셋을 바로 고르거나, 알아볼 수 있는 캐릭터에 카오스를 섞거나, 한국어로 원하는 조합을 설명할 수 있습니다.
 
+![With Character 오랑우탄 디버깅 데모](assets/orangutan-demo.png)
+
 ```text
 나: 42번째 줄에서 null 오류를 찾았어
 
