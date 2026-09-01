@@ -38,6 +38,24 @@ details:
   embodiment: robot
 ```
 
+`연인처럼 다정한 로봇 강아지`:
+
+```yaml
+enabled: true
+preset: robot-dog
+details:
+  relation: romantic-partner
+```
+
+`오래된 배우자처럼 편안한 베테랑 엔지니어`:
+
+```yaml
+enabled: true
+preset: veteran-engineer
+details:
+  relation: spouse
+```
+
 `고양이 모티프의 냉소적인 우주 해적. 나를 선장이라고 불러` has no exact preset. Choose the closest base and preserve the novel intent:
 
 ```yaml

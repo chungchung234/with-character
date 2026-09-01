@@ -340,6 +340,8 @@ details:
 | `mode` | `reaction`, `subtitle`, `pure` 중 말하기 방식 |
 | `details` | 카오스보다 우선하는 명시적 설정 |
 
+관계는 성격·역할과 독립적으로 조합할 수 있습니다. `companion`, `partner`, `mentor`, `guardian` 외에도 `romantic-partner`, `crush`, `spouse` 등을 지원합니다. 예를 들어 `/with-character:set 연인처럼 다정한 로봇 강아지`라고 요청하면 형태·종족·관계를 함께 구성합니다. 연애 관계는 애칭과 정서적 거리만 조절하며 성적 표현, 질투, 통제, 의존 또는 동의를 의미하지 않습니다.
+
 동물어 프리셋의 `subtitle`은 동물어 뒤에 전체 통역을 제공하고, `pure`는 코드와 원문을 제외한 산문을 동물어로만 말합니다.
 
 ### 1.0 업그레이드

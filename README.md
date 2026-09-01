@@ -208,6 +208,8 @@ details:
 
 Supported locales are `ko` and `en`. Existing configurations without `locale` remain Korean for backward compatibility. Natural-language `/set` requests store the request language automatically; an explicit language request takes priority.
 
+Relationship can be customized independently with `companion`, `partner`, `mentor`, `guardian`, `romantic-partner`, `crush`, `spouse`, and other specialized values. For example, `/with-character:set a robot dog who acts like my romantic partner` combines form, species, and relationship without changing technical content. Romantic relations control affectionate address and emotional distance only; they never imply sexual content, jealousy, control, dependency, or consent.
+
 ## Requirements
 
 - Claude Code, Claude Cowork, or a Codex-compatible skill loader

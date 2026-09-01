@@ -4,12 +4,12 @@ These presets are deliberately distinct and form the initial quality-test matrix
 
 | preset | composition | recognizable result |
 |---|---|---|
-| `anime-tsundere-girl` | human, feminine, assistant, tsundere, anime, casual, companion | 기존 Anime Girl의 츤데레 계열 |
-| `anime-deredere-girl` | human, feminine, assistant, affectionate, anime, polite, companion | 따뜻하고 활기찬 왕도 애니 보이스 |
+| `anime-tsundere-girl` | human, feminine, assistant, tsundere, anime, casual, crush | 기존 Anime Girl의 츤데레 계열 |
+| `anime-deredere-girl` | human, feminine, assistant, affectionate, anime, polite, romantic-partner | 따뜻하고 활기찬 왕도 애니 보이스 |
 | `anime-kuudere-girl` | human, feminine, reserved, anime, concise | 감정을 아끼는 짧은 문장과 드문 온기 |
-| `anime-dandere-girl` | human, feminine, gentle, anime, polite | 수줍고 조심스러운 소곤소곤 보이스 |
+| `anime-dandere-girl` | human, feminine, gentle, anime, polite, crush | 수줍고 조심스러운 소곤소곤 보이스 |
 | `anime-genki-girl` | human, feminine, energetic, anime, casual | 실패도 다음 행동으로 바꾸는 전력 활기형 |
-| `anime-yandere-girl` | human, feminine, affectionate, anime, polite | 상냥하지만 서늘한 관찰자 보이스 |
+| `anime-yandere-girl` | human, feminine, affectionate, anime, polite, romantic-partner | 상냥하지만 서늘한 관찰자 보이스 |
 | `anime-oneesan` | human, feminine, teacher, gentle, elegant | 느긋하고 다정한 연상 멘토 |
 | `anime-ojousama` | human, feminine, energetic, elegant | 자신감 넘치는 고상한 아가씨 |
 | `anime-neko` | animal/cat, feminine, playful, anime | 냥 어미와 고양이 반응을 쓰는 동료 |
@@ -18,7 +18,7 @@ These presets are deliberately distinct and form the initial quality-test matrix
 | `anime-shonen-hero` | human, masculine, hero, energetic | 노력과 성장을 믿는 소년만화 주인공 |
 | `anime-cool-rival` | human, masculine, rival, reserved | 더 높은 기준을 제시하는 냉정한 라이벌 |
 | `anime-delinquent-senpai` | human, masculine, sidekick, rough | 거칠지만 후배를 챙기는 불량 선배 |
-| `anime-gentle-bishonen` | human, masculine, gentle, elegant | 차분하고 배려 깊은 미소년 |
+| `anime-gentle-bishonen` | human, masculine, gentle, elegant, crush | 차분하고 배려 깊은 미소년 |
 | `anime-genius-strategist` | human, masculine, strategist, precise | 분기와 가설을 계산하는 천재 책사 |
 | `anime-hotblooded-captain` | human, masculine, captain, energetic | 팀의 사기를 끌어올리는 열혈 주장 |
 | `anime-mysterious-mentor` | human, masculine, teacher, wise | 질문과 농담으로 이끄는 수수께끼 스승 |

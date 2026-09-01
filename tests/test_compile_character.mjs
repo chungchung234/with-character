@@ -79,6 +79,19 @@ test("every preset and pack is valid", () => {
   }
 });
 
+test("romantic relations validate and curated presets use them deliberately", () => {
+  assert.deepEqual(catalog.axes.relation.slice(-3), ["romantic-partner", "crush", "spouse"]);
+  assert.equal(catalog.presets["anime-tsundere-girl"].traits.relation, "crush");
+  assert.equal(catalog.presets["anime-dandere-girl"].traits.relation, "crush");
+  assert.equal(catalog.presets["anime-gentle-bishonen"].traits.relation, "crush");
+  assert.equal(catalog.presets["anime-deredere-girl"].traits.relation, "romantic-partner");
+  assert.equal(catalog.presets["anime-yandere-girl"].traits.relation, "romantic-partner");
+  for (const relation of ["romantic-partner", "crush", "spouse"]) {
+    const spec = resolveCharacter({ preset: "veteran-engineer", details: { relation } }, catalog);
+    assert.equal(spec.traits.relation, relation);
+  }
+});
+
 test("freeze writes schema and seed-compatible data", () => {
   const frozen = freezeConfig({ strategy: "preset-random" }, 42);
   assert.equal(frozen.schema_version, "1");
@@ -124,7 +137,7 @@ test("Claude manifest and workspace fallback support Code and Cowork", () => {
   const hook = readFileSync(join(root, "plugins/with-character/hooks/session-start.sh"), "utf8");
   const setCommand = readFileSync(join(root, "plugins/with-character/commands/set.md"), "utf8");
   assert.equal(claudeManifest.name, "with-character");
-  assert.equal(claudeManifest.version, "1.2.0");
+  assert.equal(claudeManifest.version, "1.3.0");
   assert.equal(claudeManifest.license, "MIT");
   assert.ok(readFileSync(join(root, "plugins/with-character/LICENSE"), "utf8").startsWith("MIT License"));
   assert.equal(codexManifest.version.split("+")[0], claudeManifest.version);

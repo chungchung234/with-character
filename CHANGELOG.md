@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.3.0
+
+- Add `romantic-partner`, `crush`, and `spouse` relationship values with Korean and English natural-language mappings.
+- Apply `crush` to Tsundere, Dandere, and Gentle Bishonen; apply `romantic-partner` to Deredere and Yandere.
+- Keep romantic relations limited to affectionate address and emotional distance without implying sexual content, control, dependency, or consent.
+
 ## 1.2.0
 
 - Add a standard Claude plugin manifest for Claude Cowork and Claude Code discovery.

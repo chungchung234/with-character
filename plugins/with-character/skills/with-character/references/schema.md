@@ -70,6 +70,15 @@ details:
 
 `embodiment` and `species` are independent. A robot dog is therefore `embodiment: robot` plus `species: dog`.
 
+Relationship is also independent from personality and role. It accepts `companion`, `servant`, `operator`, `mentor`, `partner`, `guardian`, `tribemate`, `hyem`, `romantic-partner`, `crush`, or `spouse`. For example:
+
+```yaml
+details:
+  relation: romantic-partner
+```
+
+`romantic-partner`, `crush`, and `spouse` affect only address and emotional distance. They never imply sexual content, jealousy, control, dependency, or consent.
+
 ## Free-form nuance
 
 The host LLM may preserve requested nuance that is not represented by catalog axes:
