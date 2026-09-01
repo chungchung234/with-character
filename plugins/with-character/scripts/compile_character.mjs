@@ -45,7 +45,7 @@ export function validateConfig(config) {
   for (const key of Object.keys(config)) if (!TOP_LEVEL_FIELDS.has(key)) throw new Error(`unknown config field: ${key}`);
   for (const section of ["details", "advanced", "overrides", "custom"])
     if (section in config && (typeof config[section] !== "object" || Array.isArray(config[section]))) throw new Error(`${section} must be a mapping`);
-  if (config.locale && !["auto", "ko", "en"].includes(config.locale)) throw new Error(`unknown locale: ${config.locale}`);
+  if (config.locale && !["ko", "en"].includes(config.locale)) throw new Error(`unknown locale: ${config.locale}`);
 }
 
 function needsSeed(config) {
@@ -218,8 +218,6 @@ export function resolveCharacter(config, catalog, rng = seededRng(config.seed), 
     if (asBool(config.chaos ?? false)) [traits, chaosChanges] = applyChaos(traits, catalog, rng, intensity);
   }
   [traits, language] = applyDetails(traits, language, config.details ?? config.advanced ?? config.overrides ?? {}, catalog);
-  let customName; [signature, customName] = applyCustom(signature, config.custom);
-  if (customName) displayName = customName;
   const mode = config.mode ?? defaultMode;
   if (!catalog.modes.includes(mode)) throw new Error(`unknown mode: ${mode}`);
   if (["subtitle", "pure"].includes(mode) && !language) throw new Error(`mode ${mode} requires a character language`);
@@ -228,6 +226,8 @@ export function resolveCharacter(config, catalog, rng = seededRng(config.seed), 
     displayName = localeData.display_names?.[preset] ?? displayName;
     signature = localeData.signatures?.[preset] ?? signature;
   }
+  let customName; [signature, customName] = applyCustom(signature, config.custom);
+  if (customName) displayName = customName;
   return { enabled: !["false", "off", "끄기"].includes(String(config.enabled ?? explicitlyConfigured).toLowerCase()), locale, strategy, preset, display_name: displayName, mode, intensity, traits, language, signature, chaos_changes: chaosChanges, seed: config.seed ?? null };
 }
 
@@ -238,9 +238,9 @@ function modeInstruction(spec, languageProfile) {
   if (languageProfile) return `Useful prose stays in natural ${target}; use character language only for brief reactions.`;
   return `Write useful prose in natural ${target} using the resolved preset voice.`;
 }
-export function buildPrompt(spec, skillDir, catalog) {
+export function buildPrompt(spec, skillDir, catalog, localeData = null) {
   const traits = AXIS_ORDER.filter(key => key in spec.traits).map(key => `${key}=${spec.traits[key]}`).join(", ");
-  const languageProfile = spec.language ? catalog.language_profiles[spec.language] : null;
+  const languageProfile = spec.language ? localeData?.language_profiles?.[spec.language] ?? catalog.language_profiles[spec.language] : null;
   const extras = [];
   if (languageProfile) extras.push(`Language profile=${JSON.stringify(languageProfile)}`);
   if (spec.signature) extras.push(`Preset signature=${JSON.stringify(spec.signature)}`);
@@ -277,7 +277,7 @@ export function main(argv = process.argv.slice(2)) {
     writeFileSync(temporary, yamlConfig(config), "utf8"); renameSync(temporary, options.config);
   }
   if (options.json) process.stdout.write(`${JSON.stringify(spec, null, 2)}\n`);
-  else if (spec.enabled) process.stdout.write(`${buildPrompt(spec, options.skillDir, catalog)}\n`);
+  else if (spec.enabled) process.stdout.write(`${buildPrompt(spec, options.skillDir, catalog, localeData)}\n`);
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

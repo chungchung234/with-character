@@ -1,6 +1,6 @@
 <div align="center">
 
-**English** · [한국어](README.ko.md)
+## 🌐 언어: **English** | [한국어](README.ko.md)
 
 # With Character
 

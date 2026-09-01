@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.1.1
+
+- Preserve English `custom` display names, user addresses, and rules by applying custom overrides after locale data.
+- Use absolute plugin-root compiler paths in commands and clarify skill-relative path resolution.
+- Add localized English dog, orangutan, and caveman language profiles.
+- Reject unsupported `locale: auto` instead of silently resolving it to Korean.
+- Make trait and character-language references locale-neutral.
+- Make the English/Korean README language switcher prominent at the top of both documents.
+
 ## 1.1.0
 
 - Remove the Python runtime dependency; the session hook and validator now use Node.js with no third-party packages.

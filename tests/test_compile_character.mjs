@@ -27,6 +27,26 @@ test("defaults legacy configuration to Korean", () => {
 
 test("rejects an unknown locale", () => {
   assert.throws(() => resolveCharacter({ preset: "dog", locale: "fr" }, catalog), /unknown locale/);
+  assert.throws(() => resolveCharacter({ preset: "dog", locale: "auto" }, catalog), /unknown locale/);
+});
+
+test("English locale preserves custom overrides", () => {
+  const spec = resolveCharacter({
+    locale: "en", preset: "anime-cool-rival",
+    custom: { display_name: "Custom Captain", address_user_as: "Commander", rules: "Always mention rollback" }
+  }, catalog, undefined, english);
+  assert.equal(spec.display_name, "Custom Captain");
+  assert.equal(spec.signature.address_user_as, "Commander");
+  assert.ok(spec.signature.rules.includes("Always mention rollback"));
+  assert.match(spec.signature.rules[0], /higher standard/);
+});
+
+test("English character languages use localized profiles", () => {
+  for (const preset of ["dog", "orangutan", "caveman"]) {
+    const spec = resolveCharacter({ locale: "en", preset }, catalog, undefined, english);
+    const prompt = buildPrompt(spec, join(root, "plugins/with-character/skills/with-character"), catalog, english);
+    assert.doesNotMatch(prompt, /[가-힣]/, `${preset} prompt should not contain Korean profile text`);
+  }
 });
 
 test("seeded chaos is stable", () => {
@@ -77,6 +97,8 @@ test("English and Korean READMEs stay synchronized", () => {
   const koreanReadme = readFileSync(join(root, "README.ko.md"), "utf8");
   assert.match(englishReadme, /\[한국어\]\(README\.ko\.md\)/);
   assert.match(koreanReadme, /\[English\]\(README\.md\)/);
+  assert.match(englishReadme, /## 🌐 언어: \*\*English\*\*/);
+  assert.match(koreanReadme, /## 🌐 언어: .*\*\*한국어\*\*/);
   for (const command of ["/with-character:set", "/with-character:status", "/with-character:on", "/with-character:off", "/with-character:help"])
     assert.ok(englishReadme.includes(command) && koreanReadme.includes(command), `${command} must appear in both READMEs`);
   for (const id of Object.keys(catalog.presets))
@@ -85,4 +107,13 @@ test("English and Korean READMEs stay synchronized", () => {
     assert.ok(englishReadme.includes(fact) && koreanReadme.includes(fact), `${fact} must appear in both READMEs`);
   for (const install of ["codex plugin marketplace add chungchung234/with-character", "codex plugin add with-character@personal"])
     assert.ok(englishReadme.includes(install) && koreanReadme.includes(install), `${install} must appear in both READMEs`);
+});
+
+test("commands resolve compiler and references from the plugin root", () => {
+  const status = readFileSync(join(root, "plugins/with-character/commands/status.md"), "utf8");
+  const on = readFileSync(join(root, "plugins/with-character/commands/on.md"), "utf8");
+  const skill = readFileSync(join(root, "plugins/with-character/skills/with-character/SKILL.md"), "utf8");
+  assert.match(status, /\$\{CLAUDE_PLUGIN_ROOT\}\/scripts\/compile_character\.mjs/);
+  assert.match(on, /\$\{CLAUDE_PLUGIN_ROOT\}\/skills\/with-character\/references\/request-resolution\.md/);
+  assert.match(skill, /never from the project working directory/);
 });
