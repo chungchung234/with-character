@@ -1,18 +1,94 @@
+<div align="center">
+
 # With Character
 
-완성된 캐릭터 프리셋을 하나 고르고, 원할 때만 상세 설정이나 혼돈 조합을 추가하는 Claude Code/Codex 플러그인입니다. 한국어와 영어 자연어는 Claude/Codex의 언어 이해로 동적으로 해석하고, 결정론적 컴파일러가 설정값·충돌·랜덤 seed를 검증합니다.
+**코딩 에이전트에게 성격을 입혀도, 코드와 사실은 그대로.**
 
-## 가장 쉬운 사용법
+64개의 완성형 캐릭터 · 한국어/영어 자연어 설정 · 프리셋 랜덤 · Chaos 조합
+
+[![Claude Code Plugin](https://img.shields.io/badge/Claude_Code-plugin-D97757?style=flat-square)](https://code.claude.com/docs/en/plugins)
+[![Codex Skill](https://img.shields.io/badge/Codex-skill-111111?style=flat-square)](https://github.com/openai/codex)
+[![Tests](https://img.shields.io/badge/tests-21_passing-2ea44f?style=flat-square)](#개발과-검증)
+[![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](LICENSE)
+
+[빠른 시작](#1분-만에-시작하기) · [캐릭터](#캐릭터-카탈로그) · [Random과 Chaos](#random과-chaos의-차이) · [자연어 설정](#자연어로-원하는-조합-만들기) · [개발](#개발과-검증)
+
+</div>
+
+With Character는 Claude Code와 Codex의 답변 내용은 보존하면서 말투·관계·세계관·리액션만 바꾸는 캐릭터 플러그인입니다. 검증된 프리셋을 바로 고르거나, 알아볼 수 있는 캐릭터에 Chaos를 섞거나, 한국어로 원하는 조합을 설명할 수 있습니다.
 
 ```text
-/with-character:set dog
-/with-character:set robot-dog
-/with-character:set 건달이
+나: 42번째 줄에서 null 오류를 찾았어
+
+쿨 라이벌: 42행인가. 나쁘지 않은 발견이군. 이제 원인까지 증명해 봐.
+강아지:     멍! 킁킁… 왈왈! (통역: 42번째 줄의 null을 찾았어요. 같이 추적해요!)
+건달이:     헴!!! 이 건방진 null 자식이 42번째 줄에 숨어 있었습니다!!!
 ```
 
-프리셋에는 말투, 관계, 세계관, 개그 방식과 필요한 경우 동물어 모드까지 이미 포함되어 있습니다.
+> 캐릭터는 설명의 분위기만 바꿉니다. 코드 블록, 명령어, 파일 경로, URL, 로그와 오류 원문은 변형하지 않으며 정확성과 안전이 역할극보다 항상 우선합니다.
 
-## 랜덤과 Chaos
+## 1분 만에 시작하기
+
+### 1. 설치
+
+```text
+/plugin marketplace add chungchung234/with-character
+/plugin install with-character@with-character
+```
+
+### 2. 캐릭터 선택
+
+```text
+/with-character:set 쿨 라이벌
+```
+
+### 3. 바로 대화
+
+선택한 설정은 프로젝트의 `.claude/with-character.local.md`에 저장되고 이번 세션부터 적용됩니다. 설치만으로 말투가 강제로 바뀌지는 않습니다.
+
+```text
+/with-character:status       # 현재 캐릭터 확인
+/with-character:off          # 잠시 끄기
+/with-character:on           # 다시 켜기
+```
+
+## 무엇이 다른가요?
+
+| 기능 | 설명 |
+|---|---|
+| 완성형 프리셋 | 이름만 골라도 말투·관계·역할·세계관이 함께 설정됩니다. |
+| 64종 캐릭터 | 애니, 애니 남성, 판타지, SF, 전문가, 동물·개그를 포함합니다. |
+| 자연어 설정 | “강아지는 유지하고 몸만 로봇으로” 같은 한국어 요청을 이해합니다. |
+| 두 종류의 랜덤 | 안전한 프리셋 랜덤과 모든 축을 섞는 Chaos Random을 구분합니다. |
+| 안정적인 결과 | 랜덤 seed를 저장하므로 선택한 조합이 대화 도중 바뀌지 않습니다. |
+| 내용 보존 | 캐릭터 말투가 코드·경로·로그·오류 원문을 오염시키지 않습니다. |
+
+## 어떤 캐릭터부터 써볼까요?
+
+| 원하는 경험 | 추천 | 명령 |
+|---|---|---|
+| 응원받으며 빠르게 진행 | 소년만화 주인공 | `/with-character:set 소년만화 주인공` |
+| 냉정한 코드 리뷰 | 쿨 라이벌 | `/with-character:set 쿨 라이벌` |
+| 차분한 운영 판단 | 베테랑 엔지니어 | `/with-character:set 베테랑 엔지니어` |
+| 단계별 학습 | 명랑한 튜터 | `/with-character:set 명랑한 튜터` |
+| 판타지 분위기 | 용 현자 | `/with-character:set 용 현자` |
+| SF 분위기 | 합성인간 탐정 | `/with-character:set 합성인간 탐정` |
+| 가벼운 개그 | 원시인 개발자 | `/with-character:set 원시인` |
+| 강한 개그 | 야생 오랑우탄 | `/with-character:set 야생 오랑우탄` |
+| 과장된 내 편 | 건달이 | `/with-character:set 건달이` |
+| 결정하기 귀찮음 | 프리셋 랜덤 | `/with-character:set random` |
+
+팩 안에서만 무작위로 고를 수도 있습니다.
+
+```text
+/with-character:set random anime-male
+/with-character:set random fantasy
+/with-character:set random sci-fi
+/with-character:set random professional
+/with-character:set random comedy
+```
+
+## Random과 Chaos의 차이
 
 ```text
 /with-character:set random
@@ -30,7 +106,20 @@
 
 랜덤 결과에는 seed가 저장되어 현재 조합이 세션과 상태 조회 중에 바뀌지 않습니다. 다시 요청하면 새 조합을 뽑습니다.
 
-## 한국어 자연어 상세 설정
+```text
+random
+└─ 완성된 64개 프리셋 중 하나 선택
+
+dog chaos
+└─ 강아지는 유지 + 성격/역할/세계관 일부 변형
+
+chaos random
+└─ 몸 + 정체성 + 역할 + 성격 + 세계관 + 말투 + 관계 + 유머 전부 조합
+```
+
+처음이라면 `random`, 웃기지만 정체성이 남아야 한다면 `dog chaos`, 예측 불가능한 실험을 원한다면 `chaos random`이 적합합니다.
+
+## 자연어로 원하는 조합 만들기
 
 ```text
 /with-character:set 강아지를 로봇 형태로 바꿔줘
@@ -61,7 +150,38 @@ details:
 
 `embodiment`와 `species`는 독립적이므로 로봇 강아지, 정령 여우 같은 혼합 캐릭터를 만들 수 있습니다.
 
-## 프리셋 캐릭터 64종과 답변 예시
+### 요청은 어떻게 처리되나요?
+
+```text
+한국어/영어 요청
+      ↓ 호스트 LLM이 의미 해석
+프리셋 + Chaos + 상세 설정
+      ↓ 결정론적 컴파일러가 검증
+고정된 seed와 최종 캐릭터
+      ↓
+코드와 원문은 보존하고 산문에만 캐릭터 적용
+```
+
+키워드를 정규식으로 짜 맞추는 방식이 아닙니다. Claude/Codex가 자연어 의도를 구조화하고, 컴파일러는 존재하지 않는 값·충돌·말하기 모드를 검증합니다.
+
+## 캐릭터 카탈로그
+
+| 팩 | 포함 수 | 대표 캐릭터 |
+|---|---:|---|
+| `anime` | 19 | 츤데레, 쿠데레, 소년만화 주인공, 쿨 라이벌 |
+| `anime-male` | 8 | 불량 선배, 다정한 미소년, 천재 책사, 열혈 주장 |
+| `fantasy` | 16 | 여우 마법사, 용 현자, 성기사, 드루이드 |
+| `sci-fi` | 14 | 우주 함장, 사이버펑크 해커, 우주 해병, 시간 여행자 |
+| `professional` | 7 | 신사 탐정, 전문 의사, 베테랑 엔지니어 |
+| `animal` | 7 | 강아지, 로봇 강아지, 오랑우탄, 올빼미 선생 |
+| `comedy` | 13 | 건달이, 원시인, 중2병, 광기 과학자 |
+
+팩은 서로 겹칠 수 있습니다. 예를 들어 로봇 강아지는 `animal`과 `sci-fi` 양쪽에서 선택될 수 있습니다.
+
+<details>
+<summary><strong>64종 전체 프리셋과 같은 상황의 답변 비교 펼치기</strong></summary>
+
+### 전체 프리셋 답변 예시
 
 아래 예시는 모두 사용자가 **“42번째 줄에서 null 오류를 찾았어”**라고 말한 상황입니다. 실제 답변은 작업 내용에 맞게 달라지지만 캐릭터의 말투와 반응 방식은 유지됩니다.
 
@@ -132,6 +252,8 @@ details:
 | 동물·개그 | `caveman` | 원시인 개발자 | “우가! 42줄 나쁜 빈 돌 찾았다! 원시인 고친다!” |
 | 동료·개그 | `loyal-younger-brother` | 건달이 | “헴!!! 이 건방진 null 자식이 42번째 줄에 숨어 있었습니다!!! 제가 바로 정리하겠습니다, 헴!!!” |
 
+</details>
+
 표의 프리셋 ID나 표시 이름을 그대로 사용할 수 있습니다. 예를 들어 `/with-character:set dog`, `/with-character:set 원시인`, `/with-character:set 쿨 라이벌`, `/with-character:set 성기사`, `/with-character:set 우주 해병`, `/with-character:set 건달이`가 모두 동작합니다. 팩 랜덤은 `random anime`, `random anime-male`, `random fantasy`, `random sci-fi`, `random professional`, `random adventure`, `random comedy`처럼 요청할 수 있습니다.
 
 ### 건달이
@@ -165,18 +287,115 @@ Chaos는 알아볼 수 있는 기본 캐릭터를 남겨 두고 일부 설정만
 - [고전 판타지 캐릭터 클래스와 역할](https://en.wikipedia.org/wiki/Character_class_%28Dungeons_%26_Dragons%29)
 - [SF의 대표적인 우주 해병 아키타입](https://en.wikipedia.org/wiki/Space_marine)
 
-## 설치
+## 명령어
 
-```text
-/plugin marketplace add chungchung234/with-character
-/plugin install with-character@with-character
+| 명령 | 역할 |
+|---|---|
+| `/with-character:set <요청>` | 프리셋 선택, 랜덤, Chaos 또는 상세 설정 |
+| `/with-character:status` | 현재 프리셋과 Chaos 변경 사항 확인 |
+| `/with-character:on` | 저장된 설정을 유지한 채 캐릭터 활성화 |
+| `/with-character:off` | 저장된 설정을 유지한 채 캐릭터 비활성화 |
+| `/with-character:help` | 팩과 대표 사용법 보기 |
+
+## 설정 파일
+
+대부분의 사용자는 명령만 쓰면 됩니다. 재현 가능한 설정을 공유하거나 직접 편집하고 싶을 때만 `.claude/with-character.local.md`를 사용하세요.
+
+```yaml
+---
+enabled: true
+preset: dog
+chaos: true
+seed: 1234
+mode: reaction
+details:
+  embodiment: robot
+  role: detective
+---
 ```
 
-설치만으로 말투가 강제로 바뀌지는 않습니다. 프리셋을 선택하면 프로젝트의 `.claude/with-character.local.md`에 설정이 저장됩니다.
+| 필드 | 의미 |
+|---|---|
+| `preset` | 기준이 되는 완성형 캐릭터 |
+| `chaos` | 기준 프리셋의 일부 보조 축 변형 |
+| `seed` | 랜덤 결과를 고정하는 값 |
+| `mode` | `reaction`, `subtitle`, `pure` 중 말하기 방식 |
+| `details` | Chaos보다 우선하는 명시적 설정 |
 
-## 개발
+동물어 프리셋의 `subtitle`은 동물어 뒤에 전체 통역을 제공하고, `pure`는 코드와 원문을 제외한 산문을 동물어로만 말합니다.
+
+## 설계 원칙
+
+- **프리셋 우선:** 사용자가 여러 축을 공부하지 않아도 이름 하나로 완성된 결과를 얻습니다.
+- **조합 가능:** 몸, 종족, 역할을 분리해 로봇 강아지나 정령 여우가 가능합니다.
+- **의도 우선:** 사용자가 명시한 상세 설정은 랜덤과 Chaos 결과보다 우선합니다.
+- **재현 가능:** 무작위 결과는 seed로 고정됩니다.
+- **내용 보존:** 역할극은 산문 표현에만 적용되고 기술적 원문을 바꾸지 않습니다.
+- **안전 우선:** 충성, 도발, 광기 같은 캐릭터 설정도 정확성과 안전을 넘지 않습니다.
+
+## 자주 묻는 질문
+
+<details>
+<summary><strong>설치하면 모든 답변이 바로 캐릭터 말투로 바뀌나요?</strong></summary>
+
+아닙니다. `/with-character:set ...`으로 프리셋을 선택해야 활성화됩니다. `/with-character:off`로 설정을 지우지 않고 잠시 끌 수 있습니다.
+
+</details>
+
+<details>
+<summary><strong>Random과 Chaos Random은 무엇이 다른가요?</strong></summary>
+
+`random`은 사람이 설계한 64개 완성형 프리셋 중 하나를 고릅니다. `chaos random`은 모든 축을 새로 조합하므로 더 예측 불가능합니다.
+
+</details>
+
+<details>
+<summary><strong>특정 애니메이션이나 영화 캐릭터를 그대로 지원하나요?</strong></summary>
+
+고유 캐릭터를 복제하지 않습니다. 여러 작품에서 반복되는 츤데레, 소년만화 주인공, 성기사, 우주 현상금 사냥꾼 같은 장르 아키타입을 독립적으로 구현합니다.
+
+</details>
+
+<details>
+<summary><strong>캐릭터가 코드나 에러 메시지도 바꾸나요?</strong></summary>
+
+아닙니다. 코드 블록, 명령, 경로, URL, 식별자, 로그와 인용된 오류는 그대로 보존합니다.
+
+</details>
+
+## 저장소 구조
+
+```text
+plugins/with-character/
+├── commands/              # set, status, on, off, help
+├── hooks/                 # 세션 시작 시 저장된 설정 로드
+├── scripts/
+│   ├── catalog.json       # 64개 프리셋과 조합 축
+│   └── compile_character.py
+└── skills/with-character/
+    ├── SKILL.md
+    └── references/        # 스키마, 말하기 모드, 프리셋 가이드
+```
+
+## 개발과 검증
+
+Python 표준 라이브러리만으로 컴파일러를 실행할 수 있습니다.
 
 ```bash
 python3 -m unittest discover -s tests -v
 python3 plugins/with-character/scripts/compile_character.py examples/with-character.local.md --freeze --json
 ```
+
+변경 시 확인하는 핵심 조건은 다음과 같습니다.
+
+- 모든 프리셋이 유효한 축 값을 사용하는가
+- 팩에 존재하지 않는 프리셋이나 중복이 없는가
+- 한국어 별칭이 올바른 프리셋으로 해석되는가
+- 같은 seed에서 Random과 Chaos 결과가 유지되는가
+- 명시적 상세 설정이 Chaos보다 우선하는가
+
+기여할 때는 새로운 프리셋의 이름만 추가하지 말고, 기존 캐릭터와 구분되는 말투·판단 방식·대표 예시를 함께 추가해 주세요.
+
+## 라이선스
+
+[MIT License](LICENSE)
