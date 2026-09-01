@@ -5,7 +5,7 @@
     {
       "name": "with-character",
       "source": "./plugins/with-character",
-      "description": "캐릭터 하나만 고르면 완성 — 동물어 통역·순수 개그·리액션 모드 지원"
+      "description": "완성형 프리셋부터 혼돈 조합까지 — 한국어 자연어로 캐릭터 선택·랜덤·상세 설정"
     }
   ]
 }

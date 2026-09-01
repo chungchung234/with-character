@@ -1,35 +1,80 @@
-# Character configuration
+# Preset and chaos configuration
 
-The ordinary user-facing configuration exposes only a character and speech mode:
+Most users select only a preset:
 
 ```yaml
 ---
-character: dog
-mode: subtitle
+enabled: true
+preset: dog
 ---
 ```
 
-`mode` may be omitted to use the character default. `dog` and `orangutan` default to `subtitle`; ordinary speaking characters default to `reaction`. A missing config file leaves the style disabled.
+## Selection strategies
 
-Random selection uses a curated pack:
+Curated preset random:
 
 ```yaml
 ---
-character: random
+enabled: true
+strategy: preset-random
 pack: comedy
+seed: 1234
 ---
 ```
 
-Advanced customization is optional and hidden from the basic workflow:
+Chaos based on a recognizable preset:
 
 ```yaml
 ---
-character: robot-butler
-mode: reaction
-advanced:
-  personality: tsundere
-  world: fantasy
+enabled: true
+preset: dog
+chaos: true
+seed: 1234
 ---
 ```
 
-Legacy `preset` and `overrides` fields remain accepted as aliases for `character` and `advanced`. Unknown values must be rejected rather than silently invented.
+Fully random axes without a base preset:
+
+```yaml
+---
+enabled: true
+strategy: chaos-random
+seed: 1234
+---
+```
+
+The seed keeps a generated combination stable until the user asks to reroll.
+
+## Details
+
+Explicit details are applied after chaos, so user choices always win:
+
+```yaml
+---
+enabled: true
+preset: dog
+chaos: true
+seed: 1234
+details:
+  embodiment: robot
+  role: detective
+  world: noir
+---
+```
+
+`embodiment` and `species` are independent. A robot dog is therefore `embodiment: robot` plus `species: dog`.
+
+## Free-form nuance
+
+The host LLM may preserve requested nuance that is not represented by catalog axes:
+
+```yaml
+custom:
+  display_name: 냉소적인 우주 해적 고양이
+  address_user_as: 선장
+  rules: 해적선 비유를 사용한다 | 건조한 농담을 제한적으로 사용한다
+```
+
+`custom` accepts only `display_name`, `address_user_as`, and pipe-separated `rules`. The compiler limits their size. Safety and accuracy remain higher priority than custom rules.
+
+Legacy `character`, `advanced`, `overrides`, and `form` remain accepted as aliases for `preset`, `details`, and `embodiment`.

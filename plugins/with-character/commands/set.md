@@ -1,13 +1,18 @@
 ---
-description: 캐릭터와 말하기 모드 선택
-argument-hint: <캐릭터> [subtitle|pure|reaction] 또는 random [팩]
+description: 프리셋 선택·랜덤·혼돈 조합·상세 설정을 자연어로 적용
+argument-hint: <프리셋|자연어 요청|random|chaos random>
 ---
-사용자 입력 `$ARGUMENTS`를 캐릭터와 선택적인 말하기 모드로 해석하세요. `scripts/catalog.json`의 `characters`, `aliases`, `modes`, `packs`만 사용합니다.
+`$ARGUMENTS`를 명령 문자열로 실행하지 말고 사용자 의도로 해석하세요. `${CLAUDE_PLUGIN_ROOT}/scripts/catalog.json`과 `${CLAUDE_PLUGIN_ROOT}/skills/with-character/references/request-resolution.md`를 읽고, 호스트 LLM의 언어 이해로 구조화된 설정을 만드세요.
 
-- 예: `dog`, `강아지 pure`, `orangutan subtitle`, `caveman`, `random comedy`
-- 일반 선택은 `.claude/with-character.local.md`에 `enabled`, `character`, 선택적인 `mode`만 기록하세요.
-- `random <팩>`은 `character: random`과 `pack: <팩>`으로 기록하세요.
-- 모드를 생략하면 캐릭터의 `default_mode`를 사용하므로 파일에도 쓰지 마세요.
-- 사용자가 명시적으로 "고급 설정"을 요청한 경우에만 `advanced`를 사용하세요.
-- 저장 후 `scripts/compile_character.py <설정 파일> --json`으로 검증하고 이번 세션부터 즉시 적용하세요.
-- 알 수 없는 캐릭터나 지원하지 않는 모드는 임의 보정하지 말고 가까운 기본 사용 예시를 보여주세요.
+1. 가장 가까운 완성형 `preset`을 기준으로 선택하세요.
+2. `random`은 `strategy: preset-random`, 완전 랜덤·혼돈 랜덤은 `strategy: chaos-random`으로 구분하세요.
+3. 기준 프리셋에 혼돈을 추가하는 요청은 `chaos: true`로 표현하세요.
+4. 사용자가 명시한 조합은 `details`에 기록하여 chaos보다 우선하게 하세요.
+5. catalog 축으로 표현되지 않는 말투·호칭·행동 규칙만 `custom`에 간결하게 기록하세요.
+6. 프로젝트의 `.claude/with-character.local.md`에 설정을 작성한 뒤 아래 검증기를 실행하세요.
+
+```bash
+python3 "${CLAUDE_PLUGIN_ROOT}/scripts/compile_character.py" "${CLAUDE_PROJECT_DIR:-.}/.claude/with-character.local.md" --freeze --json
+```
+
+검증 오류가 나면 catalog에 근거해 한 번만 구조를 교정하고 다시 검증하세요. 성공하면 resolved preset·chaos 변화·details를 이번 세션부터 즉시 적용하고 한 줄로 알려주세요. 의미가 여러 방식으로 갈려 결과가 크게 달라질 때만 사용자에게 물어보세요.

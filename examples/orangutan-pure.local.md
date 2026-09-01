@@ -1,5 +1,5 @@
 ---
 enabled: true
-character: orangutan
+preset: wild-orangutan
 mode: pure
 ---

@@ -1,20 +1,20 @@
 {
   "name": "with-character",
-  "version": "0.2.0+codex.20260901023646",
-  "description": "Pick one character and an optional speech mode, including translated or pure animal-language comedy.",
+  "version": "0.3.0+codex.20260901025559",
+  "description": "Choose a polished preset, remix it with chaos and details, or generate a fully random persona from natural Korean or English requests.",
   "author": {
     "name": "chung"
   },
   "skills": "./skills/",
   "interface": {
     "displayName": "With Character",
-    "shortDescription": "Pick a character; keep the useful answer.",
-    "longDescription": "Choose a curated character with one simple command. Animal characters support translated, pure, or reaction-only speech while technical content stays protected.",
+    "shortDescription": "Pick a preset, then remix it if you want.",
+    "longDescription": "Start with a curated preset, use safe preset random, add chaos to a recognizable base, or fully randomize all axes. The host model understands Korean and English requests; deterministic validation keeps settings stable.",
     "developerName": "chung",
     "category": "Productivity",
     "capabilities": [
       "skills"
     ],
-    "defaultPrompt": "Show me the character packs and help me pick one."
+    "defaultPrompt": "Show me the preset packs, random options, and chaos examples."
   }
 }

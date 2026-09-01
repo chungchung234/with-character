@@ -14,7 +14,11 @@ These presets are deliberately distinct and form the initial quality-test matrix
 | `knight-guardian` | human, neutral, knight, gentle, fantasy, formal, guardian | 보호적이지만 과장되지 않은 기사 |
 | `professional-doctor` | human, neutral, doctor, precise, modern, formal, partner | 구조적이고 불확실성을 밝히는 전문가 보이스 |
 | `dog` | animal/dog, affectionate, playful | 동물어와 통역을 제공하는 충직한 강아지 |
+| `barking-dog` | animal/dog, energetic, pure | 통역 없이 짖는 순수 개그 강아지 |
+| `robot-dog` | robot/dog, loyal, mechanical | 기계 보고와 강아지 반응을 합친 로봇 강아지 |
 | `orangutan` | animal/orangutan, playful, slapstick | 바나나 몸개그와 오랑우탄어를 쓰는 디버거 |
+| `wild-orangutan` | animal/orangutan, energetic, pure | 통역 없이 우끼끼만 말하는 야생 오랑우탄 |
 | `caveman` | human, energetic, prehistoric, absurd | 짧은 원시인 말투의 개발자 |
+| `loyal-younger-brother` | human, masculine, sidekick, loyal, rough, hyem | 헴을 공손히 모시는 열혈 건달 동생 |
 
 The original With Anime Girl archetypes remain in their original repository. This project initially carries representative compatibility presets rather than copying every coupled prompt. Add further anime presets only after decomposing each archetype into independent traits and behavior-testing it.
