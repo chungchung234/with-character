@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.2.0
+
+- Add a standard Claude plugin manifest for Claude Cowork and Claude Code discovery.
+- Support Cowork workspaces when `CLAUDE_PROJECT_DIR` is unavailable.
+- Create workspace configuration directories on first character selection.
+- Document Claude Cowork installation and workspace-scoped character settings.
+
 ## 1.1.1
 
 - Preserve English `custom` display names, user addresses, and rules by applying custom overrides after locale data.

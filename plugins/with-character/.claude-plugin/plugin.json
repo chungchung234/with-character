@@ -1,0 +1,11 @@
+{
+  "name": "with-character",
+  "version": "1.2.0",
+  "description": "Give Claude one of 64 curated character voices or create a custom Korean or English remix while preserving technical content.",
+  "author": {
+    "name": "chung"
+  },
+  "homepage": "https://github.com/chungchung234/with-character",
+  "repository": "https://github.com/chungchung234/with-character",
+  "license": "MIT"
+}

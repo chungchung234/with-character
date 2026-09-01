@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
-CONFIG="${CLAUDE_PROJECT_DIR:-.}/.claude/with-character.local.md"
+WORKSPACE="${CLAUDE_PROJECT_DIR:-${PWD}}"
+CONFIG="${WORKSPACE}/.claude/with-character.local.md"
 COMPILER="${CLAUDE_PLUGIN_ROOT}/scripts/compile_character.mjs"
 CONTEXT="$(node "$COMPILER" "$CONFIG")"
 [ -z "$CONTEXT" ] && exit 0

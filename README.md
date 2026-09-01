@@ -9,6 +9,7 @@
 64 curated characters · Korean and English · preset random · Chaos remix
 
 [![Claude Code Plugin](https://img.shields.io/badge/Claude_Code-plugin-D97757?style=flat-square)](https://code.claude.com/docs/en/plugins)
+[![Claude Cowork](https://img.shields.io/badge/Claude_Cowork-compatible-D97757?style=flat-square)](https://claude.com/docs/cowork/guide/plugins)
 [![Codex Skill](https://img.shields.io/badge/Codex-skill-111111?style=flat-square)](https://github.com/openai/codex)
 [![Runtime](https://img.shields.io/badge/runtime-Node.js-339933?style=flat-square)](#requirements)
 [![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](LICENSE)
@@ -17,7 +18,7 @@
 
 </div>
 
-With Character is a Claude Code plugin and Codex skill that changes conversational voice, relationship, world, and reactions while preserving technical accuracy. Pick a polished preset, ask for a random character, remix one with Chaos, or describe a custom persona in natural English or Korean.
+With Character is a Claude Code and Claude Cowork plugin, plus a Codex skill, that changes conversational voice, relationship, world, and reactions while preserving technical accuracy. Pick a polished preset, ask for a random character, remix one with Chaos, or describe a custom persona in natural English or Korean.
 
 ![With Character orangutan debugging demo](assets/orangutan-demo.png)
 
@@ -38,6 +39,8 @@ Gangster Bro: Boss!!! That nasty null was hiding on line 42!!!
 /plugin install with-character@with-character
 /with-character:set cool rival in English
 ```
+
+In Claude Cowork, open **Customize → Plugins**, add the marketplace from `chungchung234/with-character`, install **With Character**, and use the same `/with-character:*` commands. Cowork saves the selected character in the current workspace, so each workspace can keep its own persona.
 
 For Codex CLI:
 
@@ -207,7 +210,7 @@ Supported locales are `ko` and `en`. Existing configurations without `locale` re
 
 ## Requirements
 
-- Claude Code plugin support or a Codex-compatible skill loader
+- Claude Code, Claude Cowork, or a Codex-compatible skill loader
 - Node.js 18 or newer, available as `node`
 - No Python installation and no third-party npm package required at runtime
 

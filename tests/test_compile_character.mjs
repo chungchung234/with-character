@@ -117,3 +117,18 @@ test("commands resolve compiler and references from the plugin root", () => {
   assert.match(on, /\$\{CLAUDE_PLUGIN_ROOT\}\/skills\/with-character\/references\/request-resolution\.md/);
   assert.match(skill, /never from the project working directory/);
 });
+
+test("Claude manifest and workspace fallback support Code and Cowork", () => {
+  const claudeManifest = JSON.parse(readFileSync(join(root, "plugins/with-character/.claude-plugin/plugin.json"), "utf8"));
+  const codexManifest = JSON.parse(readFileSync(join(root, "plugins/with-character/.codex-plugin/plugin.json"), "utf8"));
+  const hook = readFileSync(join(root, "plugins/with-character/hooks/session-start.sh"), "utf8");
+  const setCommand = readFileSync(join(root, "plugins/with-character/commands/set.md"), "utf8");
+  assert.equal(claudeManifest.name, "with-character");
+  assert.equal(claudeManifest.version, "1.2.0");
+  assert.equal(claudeManifest.license, "MIT");
+  assert.ok(readFileSync(join(root, "plugins/with-character/LICENSE"), "utf8").startsWith("MIT License"));
+  assert.equal(codexManifest.version.split("+")[0], claudeManifest.version);
+  assert.match(hook, /CLAUDE_PROJECT_DIR:-\$\{PWD\}/);
+  assert.match(setCommand, /mkdir -p/);
+  assert.match(setCommand, /CLAUDE_PROJECT_DIR:-\$\{PWD\}/);
+});

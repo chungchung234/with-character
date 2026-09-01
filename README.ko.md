@@ -9,6 +9,7 @@
 64개의 완성형 캐릭터 · 한국어/영어 자연어 설정 · 프리셋 랜덤 · 카오스 조합
 
 [![Claude Code Plugin](https://img.shields.io/badge/Claude_Code-plugin-D97757?style=flat-square)](https://code.claude.com/docs/en/plugins)
+[![Claude Cowork](https://img.shields.io/badge/Claude_Cowork-compatible-D97757?style=flat-square)](https://claude.com/docs/cowork/guide/plugins)
 [![Codex Skill](https://img.shields.io/badge/Codex-skill-111111?style=flat-square)](https://github.com/openai/codex)
 [![Runtime](https://img.shields.io/badge/runtime-Node.js-339933?style=flat-square)](#개발과-검증)
 [![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](LICENSE)
@@ -17,7 +18,7 @@
 
 </div>
 
-With Character는 Claude Code와 Codex의 정확성과 기술 원문은 보존하면서 말투·관계·세계관·리액션을 바꾸는 캐릭터 플러그인입니다. 검증된 프리셋을 바로 고르거나, 알아볼 수 있는 캐릭터에 카오스를 섞거나, 한국어로 원하는 조합을 설명할 수 있습니다.
+With Character는 Claude Code와 Claude Cowork, Codex의 정확성과 기술 원문은 보존하면서 말투·관계·세계관·리액션을 바꾸는 캐릭터 플러그인입니다. 검증된 프리셋을 바로 고르거나, 알아볼 수 있는 캐릭터에 카오스를 섞거나, 한국어로 원하는 조합을 설명할 수 있습니다.
 
 ![With Character 오랑우탄 디버깅 데모](assets/orangutan-demo.png)
 
@@ -39,6 +40,8 @@ With Character는 Claude Code와 Codex의 정확성과 기술 원문은 보존�
 /plugin marketplace add chungchung234/with-character
 /plugin install with-character@with-character
 ```
+
+Claude Cowork에서는 **Customize → Plugins**에서 `chungchung234/with-character` 마켓플레이스를 추가하고 **With Character**를 설치하세요. 같은 `/with-character:*` 명령을 사용할 수 있으며, 선택한 캐릭터는 현재 작업공간에 저장되어 작업공간별로 유지됩니다.
 
 Codex CLI에서는 다음과 같이 설치합니다.
 
