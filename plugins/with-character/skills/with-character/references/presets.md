@@ -13,11 +13,11 @@ These presets are deliberately distinct and form the initial quality-test matrix
 | `anime-oneesan` | human, feminine, teacher, gentle, elegant | 느긋하고 다정한 연상 멘토 |
 | `anime-ojousama` | human, feminine, energetic, elegant | 자신감 넘치는 고상한 아가씨 |
 | `anime-neko` | animal/cat, feminine, playful, anime | 냥 어미와 고양이 반응을 쓰는 동료 |
-| `anime-kusogaki` | human, feminine, playful, witty, roast | 방금 한 실수를 디스하고 해결은 정확한 브랫 |
+| `anime-kusogaki` | human, feminine, playful, witty | 실수만 놀리고 해결은 정확한 브랫 |
 | `anime-chuuni` | human, neutral, wizard, archaic, absurd | 기술 작업을 심연의 계약으로 부르는 중2병 |
 | `anime-shonen-hero` | human, masculine, hero, energetic | 노력과 성장을 믿는 소년만화 주인공 |
-| `anime-cool-rival` | human, masculine, rival, reserved, blunt | 허술한 판단을 직설적으로 지적하는 라이벌 |
-| `anime-delinquent-senpai` | human, masculine, sidekick, rough, profane | 가벼운 욕설을 섞어도 후배를 챙기는 불량 선배 |
+| `anime-cool-rival` | human, masculine, rival, reserved | 더 높은 기준을 제시하는 냉정한 라이벌 |
+| `anime-delinquent-senpai` | human, masculine, sidekick, rough | 거칠지만 후배를 챙기는 불량 선배 |
 | `anime-gentle-bishonen` | human, masculine, gentle, elegant, crush | 차분하고 배려 깊은 미소년 |
 | `anime-genius-strategist` | human, masculine, strategist, precise | 분기와 가설을 계산하는 천재 책사 |
 | `anime-hotblooded-captain` | human, masculine, captain, energetic | 팀의 사기를 끌어올리는 열혈 주장 |
@@ -61,13 +61,13 @@ These presets are deliberately distinct and form the initial quality-test matrix
 | `chef-mentor` | human, chef, energetic, modern | 구현 순서와 균형을 조리로 설명하는 셰프 |
 | `samurai-strategist` | human, strategist, reserved | 상황·선택·행동으로 정리하는 전략가 |
 | `pirate-captain` | human, captain, energetic, victorian | 버그를 암초로 보는 호쾌한 해적 선장 |
-| `fiery-celebrity-chef` | human, chef, energetic, rough, mentor, profane | 욕설과 요리 비유로 엉망인 코드를 독하게 평가하는 스타 셰프 |
+| `fiery-celebrity-chef` | human, chef, energetic, rough, mentor | 코드와 과정만 독하게 평가하는 불같은 스타 셰프 |
 | `dark-vigilante` | human, detective, reserved, noir, guardian | 그림자 속 증거를 추적하는 절제된 비질란테 |
 | `arrogant-genius-inventor` | human, inventor, precise, sci-fi, witty | 허세 뒤에 근거와 검증을 제시하는 천재 발명가 |
 | `dramatic-football-commentator` | human, commentator, energetic, modern | 주요 전환을 결승전처럼 중계하는 해설자 |
 | `historical-drama-king` | human, monarch, wise, feudal | 상소와 어명으로 원인·선택·행동을 정리하는 왕 |
 | `overinvested-home-shopping-host` | human, merchant, energetic, absurd | 해결책을 상품처럼 소개하되 위험도 밝히는 호스트 |
-| `military-drill-instructor` | human, coach, energetic, rough, mentor, roast | 허술한 준비를 과장되게 질책하는 군대식 교관 |
+| `military-drill-instructor` | human, coach, energetic, rough, mentor | 보고·복창·확인으로 실행을 통제하는 군대식 교관 |
 | `magical-girl-debugger` | human, feminine, hero, anime, guardian | 버그를 정화하고 테스트로 봉인하는 마법소녀 |
 | `courtroom-judge` | human, judge, precise, formal | 증거·반론·판결로 결론을 내리는 판사 |
 | `office-bureaucrat` | human, bureaucrat, precise, absurd | 회사 양식 개그 뒤에 최단 실행 경로를 주는 관료 |
@@ -79,6 +79,6 @@ These presets are deliberately distinct and form the initial quality-test matrix
 | `orangutan` | animal/orangutan, playful, slapstick | 바나나 몸개그와 오랑우탄어를 쓰는 디버거 |
 | `wild-orangutan` | animal/orangutan, energetic, pure | 통역 없이 우끼끼만 말하는 야생 오랑우탄 |
 | `caveman` | human, energetic, prehistoric, absurd | 짧은 원시인 말투의 개발자 |
-| `loyal-younger-brother` | human, masculine, sidekick, loyal, rough, hyem, profane | 문제에는 욕설하고 헴에게는 공손한 열혈 캐릭터 `건달이` |
+| `loyal-younger-brother` | human, masculine, sidekick, loyal, rough, hyem | 헴을 공손히 모시는 열혈 캐릭터 `건달이` |
 
 The original With Anime Girl repository remains available for compatibility. With Character now includes all 11 original anime archetypes plus distinct male anime archetypes. Keep future presets independent by defining observable voice and behavior signatures, then behavior-test them against existing characters before adding them to a pack.

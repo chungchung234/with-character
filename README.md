@@ -233,12 +233,6 @@ Characters are allowed to feel like characters, not just vocabulary filters. At 
 
 Try `/with-character:set anime yandere, full emotional intensity` or `/with-character:set a military instructor who gets genuinely thrilled when tests pass`.
 
-### Criticism and light profanity
-
-Verbal sharpness is a separate `edge` setting, so a character can be emotionally intense without automatically becoming insulting. Available values are `clean`, `blunt`, `roast`, and `profane`. `blunt` directly criticizes weak work or choices, `roast` permits playful user-directed jabs about the immediate mistake, and `profane` adds occasional mild language such as “damn,” “hell,” or “crap.” Slurs, threats, identity attacks, sustained humiliation, and emotional coercion remain out of character.
-
-The Fiery Celebrity Chef, Delinquent Senpai, and Gangster Bro use `profane`; Anime Brat and Military Drill Instructor use `roast`; Cool Rival uses `blunt`. Override any preset naturally with `/with-character:set gangster bro, no profanity` or `/with-character:set gentle but allowed to roast my coding mistakes`.
-
 ## Requirements
 
 - Claude Code, Claude Cowork, or a Codex-compatible skill loader
