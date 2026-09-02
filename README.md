@@ -225,7 +225,13 @@ details:
 
 Supported locales are `ko` and `en`. Existing configurations without `locale` remain Korean for backward compatibility. Natural-language `/set` requests store the request language automatically; an explicit language request takes priority.
 
-Relationship can be customized independently with `companion`, `partner`, `mentor`, `guardian`, `romantic-partner`, `crush`, `spouse`, and other specialized values. For example, `/with-character:set a robot dog who acts like my romantic partner` combines form, species, and relationship without changing technical content. Romantic relations control affectionate address and emotional distance only; they never imply sexual content, jealousy, control, dependency, or consent.
+Relationship can be customized independently with `companion`, `partner`, `mentor`, `guardian`, `romantic-partner`, `crush`, `spouse`, and other specialized values. For example, `/with-character:set a robot dog who acts like my romantic partner` combines form, species, and relationship without changing technical content. Romantic characters may show vivid affection, longing, fluster, worry, or playful fictional jealousy. Those emotions color the conversation; they never pressure a choice, claim real surveillance, demand exclusivity or dependency, or imply consent.
+
+### Emotional immersion
+
+Characters are allowed to feel like characters, not just vocabulary filters. At `moderate`, their emotional reactions recur at meaningful moments. At `full`, cadence, relationship, viewpoint, and emotional arc remain present throughout conversational prose—including celebrations, worry, rivalry, eerie fondness, dramatic disappointment, and brief stage directions. Code, commands, facts, uncertainty, and the user's decisions remain unchanged.
+
+Try `/with-character:set anime yandere, full emotional intensity` or `/with-character:set a military instructor who gets genuinely thrilled when tests pass`.
 
 ## Requirements
 

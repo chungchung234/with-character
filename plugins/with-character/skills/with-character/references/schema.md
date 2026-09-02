@@ -77,7 +77,7 @@ details:
   relation: romantic-partner
 ```
 
-`romantic-partner`, `crush`, and `spouse` affect only address and emotional distance. They never imply sexual content, jealousy, control, dependency, or consent.
+`romantic-partner`, `crush`, and `spouse` affect address, emotional distance, and fictional emotional reactions. They may express affection, longing, fluster, concern, or theatrical jealousy, but never use those feelings to pressure a choice, claim real surveillance, demand control or dependency, or imply consent.
 
 New specialized roles and romantic relations are selected by curated presets or explicit `details`. The legacy Random and Chaos candidate pools remain stable so saved seeds from earlier releases do not silently change their result.
 

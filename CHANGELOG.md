@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.6.0
+
+- Deepen emotional immersion across every character instead of limiting personality to openings and endings.
+- Make `light`, `moderate`, and `full` control sustained emotional presence as well as surface styling.
+- Allow vivid affection, fluster, rivalry, worry, relief, theatrical jealousy, eerie fondness, and brief stage directions when they fit the character.
+- Separate emotional acting from user agency: character feelings may color the conversation but cannot pressure decisions, claim real access, or create obligations.
+
 ## 1.5.0
 
 - Expand the catalog from 70 to 76 presets with Military Drill Instructor, Magical Girl Debugger, Courtroom Judge, Office Bureaucrat, Game Show Host, and Gothic Vampire Aristocrat.

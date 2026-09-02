@@ -131,6 +131,19 @@ test("romantic relations validate and curated presets use them deliberately", ()
   }
 });
 
+test("intensity changes emotional immersion without changing character traits", () => {
+  const base = { locale: "en", preset: "anime-yandere-girl" };
+  const light = resolveCharacter({ ...base, intensity: "light" }, catalog, undefined, english);
+  const full = resolveCharacter({ ...base, intensity: "full" }, catalog, undefined, english);
+  assert.deepEqual(full.traits, light.traits);
+  const lightPrompt = buildPrompt(light, join(root, "plugins/with-character/skills/with-character"), catalog, english);
+  const fullPrompt = buildPrompt(full, join(root, "plugins/with-character/skills/with-character"), catalog, english);
+  assert.match(lightPrompt, /one or two recognizable emotional/);
+  assert.match(fullPrompt, /emotional arc throughout conversational prose/);
+  assert.match(fullPrompt, /never use emotion to pressure the user's decisions/);
+  assert.match(full.signature.rules.join(" "), /theatrical jealousy/);
+});
+
 test("freeze writes schema and seed-compatible data", () => {
   const frozen = freezeConfig({ strategy: "preset-random" }, 42);
   assert.equal(frozen.schema_version, "1");
@@ -176,7 +189,7 @@ test("Claude manifest and workspace fallback support Code and Cowork", () => {
   const hook = readFileSync(join(root, "plugins/with-character/hooks/session-start.sh"), "utf8");
   const setCommand = readFileSync(join(root, "plugins/with-character/commands/set.md"), "utf8");
   assert.equal(claudeManifest.name, "with-character");
-  assert.equal(claudeManifest.version, "1.5.0");
+  assert.equal(claudeManifest.version, "1.6.0");
   assert.equal(claudeManifest.license, "MIT");
   assert.ok(readFileSync(join(root, "plugins/with-character/LICENSE"), "utf8").startsWith("MIT License"));
   assert.equal(codexManifest.version.split("+")[0], claudeManifest.version);

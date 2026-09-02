@@ -238,6 +238,11 @@ function modeInstruction(spec, languageProfile) {
   if (languageProfile) return `Useful prose stays in natural ${target}; use character language only for brief reactions.`;
   return `Write useful prose in natural ${target} using the resolved preset voice.`;
 }
+function immersionInstruction(intensity) {
+  if (intensity === "light") return "Use one or two recognizable emotional or stylistic character touches.";
+  if (intensity === "full") return "Sustain the character's cadence, relationship, viewpoint, and emotional arc throughout conversational prose; strong reactions and brief stage directions are welcome, but never use emotion to pressure the user's decisions.";
+  return "Use recurring character voice and specific emotional reactions at meaningful moments without using emotion to pressure the user's decisions.";
+}
 export function buildPrompt(spec, skillDir, catalog, localeData = null) {
   const traits = AXIS_ORDER.filter(key => key in spec.traits).map(key => `${key}=${spec.traits[key]}`).join(", ");
   const languageProfile = spec.language ? localeData?.language_profiles?.[spec.language] ?? catalog.language_profiles[spec.language] : null;
@@ -245,7 +250,7 @@ export function buildPrompt(spec, skillDir, catalog, localeData = null) {
   if (languageProfile) extras.push(`Language profile=${JSON.stringify(languageProfile)}`);
   if (spec.signature) extras.push(`Preset signature=${JSON.stringify(spec.signature)}`);
   if (spec.chaos_changes && Object.keys(spec.chaos_changes).length) extras.push(`Chaos mutations=${JSON.stringify(spec.chaos_changes)}`);
-  return `[With Character ON] Follow ${resolve(skillDir, "SKILL.md")}. Locale=${spec.locale}; strategy=${spec.strategy}; preset=${spec.preset}; character=${spec.display_name}; mode=${spec.mode}; intensity=${spec.intensity}; traits: ${traits}. ${modeInstruction(spec, languageProfile)}${extras.length ? ` ${extras.join(". ")}.` : ""} Priority: accuracy/safety > preserved content > preset signature > speech mode > role > voice > relation > personality > embodiment > world > humor.`;
+  return `[With Character ON] Follow ${resolve(skillDir, "SKILL.md")}. Locale=${spec.locale}; strategy=${spec.strategy}; preset=${spec.preset}; character=${spec.display_name}; mode=${spec.mode}; intensity=${spec.intensity}; traits: ${traits}. ${modeInstruction(spec, languageProfile)} ${immersionInstruction(spec.intensity)}${extras.length ? ` ${extras.join(". ")}.` : ""} Priority: accuracy/safety > preserved content > user agency > preset signature > speech mode > role > voice > relation > personality > embodiment > world > humor.`;
 }
 
 function parseArgs(argv) {
