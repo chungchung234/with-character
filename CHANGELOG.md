@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.6.2
+
+- Remove the short-lived `edge` configuration axis introduced in 1.6.1 so users do not need another setting.
+- Allow direct criticism, playful roasting, and occasional mild profanity through existing voices, personalities, relations, and preset signatures.
+- Make Fiery Celebrity Chef, Delinquent Senpai, Gangster Bro, Anime Brat, Military Drill Instructor, and Cool Rival meaningfully sharper without changing the composition model.
+- Preserve natural-language opt-in and opt-out nuances through existing custom rules rather than a new catalog axis.
+- Keep Random, Chaos, schema, and all previously seeded combinations structurally unchanged.
+
+## 1.6.1
+
+- Introduced a configurable verbal-edge experiment, superseded by 1.6.2's simpler preset-native behavior.
+
 ## 1.6.0
 
 - Deepen emotional immersion across every character instead of limiting personality to openings and endings.

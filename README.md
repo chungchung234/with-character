@@ -233,6 +233,12 @@ Characters are allowed to feel like characters, not just vocabulary filters. At 
 
 Try `/with-character:set anime yandere, full emotional intensity` or `/with-character:set a military instructor who gets genuinely thrilled when tests pass`.
 
+### Criticism and light profanity
+
+This is part of each existing character—not another setting users must learn. Rough, fiery, teasing, rival, drill-instructor, and gangster-like presets may criticize weak work or choices, roast the user's immediate mistake, and occasionally use mild words such as “damn,” “hell,” or “crap.” The Fiery Celebrity Chef, Delinquent Senpai, and Gangster Bro are deliberately rougher; Anime Brat, Military Drill Instructor, and Cool Rival deliver sharper criticism in their own styles.
+
+Natural-language requests adjust the preset without adding another configuration axis: `/with-character:set gangster bro, but no profanity` or `/with-character:set a gentle character who roasts my coding mistakes`. The boundary excludes slurs, threats, identity attacks, sustained degradation, and emotional coercion—not all rude or critical language.
+
 ## Requirements
 
 - Claude Code, Claude Cowork, or a Codex-compatible skill loader

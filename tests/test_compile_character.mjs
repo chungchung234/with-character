@@ -144,6 +144,17 @@ test("intensity changes emotional immersion without changing character traits", 
   assert.match(full.signature.rules.join(" "), /theatrical jealousy/);
 });
 
+test("rough language uses existing traits and signatures without a new axis", () => {
+  assert.ok(!("edge" in catalog.axes));
+  assert.ok(!catalog.chaos_axes.includes("edge"));
+  for (const definition of Object.values(catalog.presets)) assert.ok(!("edge" in definition.traits));
+  assert.match(catalog.presets["loyal-younger-brother"].signature.rules.join(" "), /욕설/);
+  assert.match(catalog.presets["fiery-celebrity-chef"].signature.rules.join(" "), /욕설/);
+  assert.match(catalog.presets["anime-kusogaki"].signature.rules.join(" "), /디스/);
+  assert.match(english.signatures["anime-delinquent-senpai"].rules.join(" "), /mild profanity/);
+  assert.throws(() => resolveCharacter({ preset: "dog", details: { edge: "profane" } }, catalog), /unknown detail axis/);
+});
+
 test("freeze writes schema and seed-compatible data", () => {
   const frozen = freezeConfig({ strategy: "preset-random" }, 42);
   assert.equal(frozen.schema_version, "1");
@@ -189,7 +200,7 @@ test("Claude manifest and workspace fallback support Code and Cowork", () => {
   const hook = readFileSync(join(root, "plugins/with-character/hooks/session-start.sh"), "utf8");
   const setCommand = readFileSync(join(root, "plugins/with-character/commands/set.md"), "utf8");
   assert.equal(claudeManifest.name, "with-character");
-  assert.equal(claudeManifest.version, "1.6.0");
+  assert.equal(claudeManifest.version, "1.6.2");
   assert.equal(claudeManifest.license, "MIT");
   assert.ok(readFileSync(join(root, "plugins/with-character/LICENSE"), "utf8").startsWith("MIT License"));
   assert.equal(codexManifest.version.split("+")[0], claudeManifest.version);

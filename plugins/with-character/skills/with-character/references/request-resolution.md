@@ -56,6 +56,26 @@ details:
   relation: spouse
 ```
 
+Do not invent a new axis for tone nuances such as stronger criticism or profanity. Preserve them as concise custom rules on the closest preset.
+
+`가벼운 욕설도 섞는 불같은 셰프`:
+
+```yaml
+enabled: true
+preset: fiery-celebrity-chef
+custom:
+  rules: 가벼운 욕설을 자연스럽게 섞는다
+```
+
+`욕설 없이 헴을 모시는 건달이`:
+
+```yaml
+enabled: true
+preset: loyal-younger-brother
+custom:
+  rules: 욕설은 쓰지 않되 거칠고 열정적인 리듬은 유지한다
+```
+
 `고양이 모티프의 냉소적인 우주 해적. 나를 선장이라고 불러` has no exact preset. Choose the closest base and preserve the novel intent:
 
 ```yaml
