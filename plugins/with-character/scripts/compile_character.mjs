@@ -5,7 +5,7 @@ import { readFileSync, writeFileSync, mkdirSync, renameSync } from "node:fs";
 import { dirname, extname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const AXIS_ORDER = ["embodiment", "identity", "species", "role", "personality", "world", "voice", "relation", "humor"];
+const AXIS_ORDER = ["embodiment", "identity", "species", "role", "personality", "world", "voice", "relation", "humor", "edge"];
 const LEGACY_AXES = { form: "embodiment" };
 const SCHEMA_VERSION = "1";
 const TOP_LEVEL_FIELDS = new Set(["schema_version", "enabled", "strategy", "preset", "character", "pack", "chaos", "mode", "intensity", "seed", "locale", "details", "advanced", "overrides", "custom"]);
@@ -158,7 +158,7 @@ function choosePreset(config, catalog, rng) {
 }
 
 function randomTraits(catalog, rng) {
-  const traits = Object.fromEntries(Object.entries(catalog.axes).filter(([axis]) => axis !== "species").map(([axis, values]) => [axis, choice(catalog.random_axes?.[axis] ?? values, rng)]));
+  const traits = Object.fromEntries(Object.entries(catalog.axes).filter(([axis]) => !["species", "edge"].includes(axis)).map(([axis, values]) => [axis, choice(catalog.random_axes?.[axis] ?? values, rng)]));
   if (choice([true, false], rng)) traits.species = choice(catalog.random_axes?.species ?? catalog.axes.species, rng);
   return traits;
 }
@@ -250,7 +250,7 @@ export function buildPrompt(spec, skillDir, catalog, localeData = null) {
   if (languageProfile) extras.push(`Language profile=${JSON.stringify(languageProfile)}`);
   if (spec.signature) extras.push(`Preset signature=${JSON.stringify(spec.signature)}`);
   if (spec.chaos_changes && Object.keys(spec.chaos_changes).length) extras.push(`Chaos mutations=${JSON.stringify(spec.chaos_changes)}`);
-  return `[With Character ON] Follow ${resolve(skillDir, "SKILL.md")}. Locale=${spec.locale}; strategy=${spec.strategy}; preset=${spec.preset}; character=${spec.display_name}; mode=${spec.mode}; intensity=${spec.intensity}; traits: ${traits}. ${modeInstruction(spec, languageProfile)} ${immersionInstruction(spec.intensity)}${extras.length ? ` ${extras.join(". ")}.` : ""} Priority: accuracy/safety > preserved content > user agency > preset signature > speech mode > role > voice > relation > personality > embodiment > world > humor.`;
+  return `[With Character ON] Follow ${resolve(skillDir, "SKILL.md")}. Locale=${spec.locale}; strategy=${spec.strategy}; preset=${spec.preset}; character=${spec.display_name}; mode=${spec.mode}; intensity=${spec.intensity}; traits: ${traits}. ${modeInstruction(spec, languageProfile)} ${immersionInstruction(spec.intensity)}${extras.length ? ` ${extras.join(". ")}.` : ""} Priority: accuracy/safety > preserved content > user agency > preset signature > speech mode > role > voice > edge > relation > personality > embodiment > world > humor.`;
 }
 
 function parseArgs(argv) {

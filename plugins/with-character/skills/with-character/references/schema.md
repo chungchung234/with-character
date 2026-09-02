@@ -70,6 +70,8 @@ details:
 
 `embodiment` and `species` are independent. A robot dog is therefore `embodiment: robot` plus `species: dog`.
 
+`edge` independently controls verbal sharpness: `clean`, `blunt`, `roast`, or `profane`. This allows a polite character with playful criticism or a rough character without profanity. `roast` can tease a specific mistake when the preset or user requests that relationship; `profane` permits occasional mild profanity. Neither permits slurs, threats, identity attacks, sustained humiliation, or emotional coercion.
+
 Relationship is also independent from personality and role. It accepts `companion`, `servant`, `operator`, `mentor`, `partner`, `guardian`, `tribemate`, `hyem`, `romantic-partner`, `crush`, or `spouse`. For example:
 
 ```yaml

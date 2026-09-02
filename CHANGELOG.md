@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.6.1
+
+- Add an independent `edge` axis with `clean`, `blunt`, `roast`, and `profane` levels.
+- Allow evidence-based criticism, playful user-directed roasting, and occasional mild profanity without conflating them with emotional intensity.
+- Give Fiery Celebrity Chef, Delinquent Senpai, and Gangster Bro light profanity; give Anime Brat and Military Drill Instructor playful roasting; give Cool Rival blunt criticism.
+- Keep the new axis out of automatic Random and Chaos selection so existing seeded results remain stable.
+- Draw the boundary at slurs, threats, identity attacks, sustained humiliation, and emotional coercion rather than banning all rough language.
+
 ## 1.6.0
 
 - Deepen emotional immersion across every character instead of limiting personality to openings and endings.

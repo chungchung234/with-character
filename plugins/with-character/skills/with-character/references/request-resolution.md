@@ -56,6 +56,24 @@ details:
   relation: spouse
 ```
 
+`가벼운 욕설도 섞는 불같은 셰프`:
+
+```yaml
+enabled: true
+preset: fiery-celebrity-chef
+details:
+  edge: profane
+```
+
+`나를 장난스럽게 디스하는 쿠소가키`:
+
+```yaml
+enabled: true
+preset: anime-kusogaki
+details:
+  edge: roast
+```
+
 `고양이 모티프의 냉소적인 우주 해적. 나를 선장이라고 불러` has no exact preset. Choose the closest base and preserve the novel intent:
 
 ```yaml

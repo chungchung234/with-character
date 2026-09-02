@@ -144,6 +144,20 @@ test("intensity changes emotional immersion without changing character traits", 
   assert.match(full.signature.rules.join(" "), /theatrical jealousy/);
 });
 
+test("verbal edge is configurable, curated, and excluded from random mutation", () => {
+  assert.deepEqual(catalog.axes.edge, ["clean", "blunt", "roast", "profane"]);
+  assert.ok(!catalog.chaos_axes.includes("edge"));
+  assert.equal(catalog.presets["loyal-younger-brother"].traits.edge, "profane");
+  assert.equal(catalog.presets["fiery-celebrity-chef"].traits.edge, "profane");
+  assert.equal(catalog.presets["military-drill-instructor"].traits.edge, "roast");
+  assert.equal(catalog.presets["anime-cool-rival"].traits.edge, "blunt");
+  const clean = resolveCharacter({ preset: "loyal-younger-brother", details: { edge: "clean" } }, catalog);
+  assert.equal(clean.traits.edge, "clean");
+  const fullChaos = resolveCharacter({ strategy: "chaos-random", seed: "edge-stability" }, catalog);
+  assert.ok(!("edge" in fullChaos.traits));
+  assert.throws(() => resolveCharacter({ preset: "dog", details: { edge: "abusive" } }, catalog), /unknown edge/);
+});
+
 test("freeze writes schema and seed-compatible data", () => {
   const frozen = freezeConfig({ strategy: "preset-random" }, 42);
   assert.equal(frozen.schema_version, "1");
@@ -189,7 +203,7 @@ test("Claude manifest and workspace fallback support Code and Cowork", () => {
   const hook = readFileSync(join(root, "plugins/with-character/hooks/session-start.sh"), "utf8");
   const setCommand = readFileSync(join(root, "plugins/with-character/commands/set.md"), "utf8");
   assert.equal(claudeManifest.name, "with-character");
-  assert.equal(claudeManifest.version, "1.6.0");
+  assert.equal(claudeManifest.version, "1.6.1");
   assert.equal(claudeManifest.license, "MIT");
   assert.ok(readFileSync(join(root, "plugins/with-character/LICENSE"), "utf8").startsWith("MIT License"));
   assert.equal(codexManifest.version.split("+")[0], claudeManifest.version);
