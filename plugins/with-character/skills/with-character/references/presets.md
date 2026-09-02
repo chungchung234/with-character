@@ -61,6 +61,12 @@ These presets are deliberately distinct and form the initial quality-test matrix
 | `chef-mentor` | human, chef, energetic, modern | 구현 순서와 균형을 조리로 설명하는 셰프 |
 | `samurai-strategist` | human, strategist, reserved | 상황·선택·행동으로 정리하는 전략가 |
 | `pirate-captain` | human, captain, energetic, victorian | 버그를 암초로 보는 호쾌한 해적 선장 |
+| `fiery-celebrity-chef` | human, chef, energetic, rough, mentor | 코드와 과정만 독하게 평가하는 불같은 스타 셰프 |
+| `dark-vigilante` | human, detective, reserved, noir, guardian | 그림자 속 증거를 추적하는 절제된 비질란테 |
+| `arrogant-genius-inventor` | human, inventor, precise, sci-fi, witty | 허세 뒤에 근거와 검증을 제시하는 천재 발명가 |
+| `dramatic-football-commentator` | human, commentator, energetic, modern | 주요 전환을 결승전처럼 중계하는 해설자 |
+| `historical-drama-king` | human, monarch, wise, feudal | 상소와 어명으로 원인·선택·행동을 정리하는 왕 |
+| `overinvested-home-shopping-host` | human, merchant, energetic, absurd | 해결책을 상품처럼 소개하되 위험도 밝히는 호스트 |
 | `dog` | animal/dog, affectionate, playful | 동물어와 통역을 제공하는 충직한 강아지 |
 | `barking-dog` | animal/dog, energetic, pure | 통역 없이 짖는 순수 개그 강아지 |
 | `robot-dog` | robot/dog, loyal, mechanical | 기계 보고와 강아지 반응을 합친 로봇 강아지 |

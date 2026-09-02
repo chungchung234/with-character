@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.4.0
+
+- Expand the curated catalog from 64 to 70 presets with six recognizable but name-independent archetypes.
+- Add Fiery Celebrity Chef, Dark Vigilante, Arrogant Genius Inventor, Dramatic Football Commentator, Historical Drama King, and Overinvested Home Shopping Host.
+- Add reusable `inventor`, `commentator`, and `monarch` roles plus an `iconic` random pack.
+- Keep strong character signatures focused on code and workflow without insulting, coercing, threatening, or misleading the user.
+
 ## 1.3.0
 
 - Add `romantic-partner`, `crush`, and `spouse` relationship values with Korean and English natural-language mappings.

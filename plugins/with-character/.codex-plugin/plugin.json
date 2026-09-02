@@ -1,15 +1,15 @@
 {
   "name": "with-character",
-  "version": "1.3.0+codex.20260901104708",
-  "description": "Give your coding agent one of 64 curated character voices or create a custom mix in Korean or English while preserving technical content.",
+  "version": "1.4.0+codex.20260902010839",
+  "description": "Give your coding agent one of 70 curated character voices or create a custom mix in Korean or English while preserving technical content.",
   "author": {
     "name": "chung"
   },
   "skills": "./skills/",
   "interface": {
     "displayName": "With Character",
-    "shortDescription": "64 character voices for your coding agent.",
-    "longDescription": "Choose one of 64 curated character presets, describe a custom persona in Korean or English, or remix a recognizable character with Chaos. Code, commands, paths, logs, facts, and safety remain intact, while deterministic validation keeps random results stable.",
+    "shortDescription": "70 character voices for your coding agent.",
+    "longDescription": "Choose one of 70 curated character presets, describe a custom persona in Korean or English, or remix a recognizable character with Chaos. Code, commands, paths, logs, facts, and safety remain intact, while deterministic validation keeps random results stable.",
     "developerName": "chung",
     "category": "Productivity",
     "capabilities": [

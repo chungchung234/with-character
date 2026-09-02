@@ -158,14 +158,14 @@ function choosePreset(config, catalog, rng) {
 }
 
 function randomTraits(catalog, rng) {
-  const traits = Object.fromEntries(Object.entries(catalog.axes).filter(([axis]) => axis !== "species").map(([axis, values]) => [axis, choice(values, rng)]));
+  const traits = Object.fromEntries(Object.entries(catalog.axes).filter(([axis]) => axis !== "species").map(([axis, values]) => [axis, choice(catalog.random_axes?.[axis] ?? values, rng)]));
   if (choice([true, false], rng)) traits.species = choice(catalog.axes.species, rng);
   return traits;
 }
 function applyChaos(traits, catalog, rng, intensity) {
   const changed = {};
   for (const axis of sample(catalog.chaos_axes, { light: 1, moderate: 2, full: 4 }[intensity], rng)) {
-    const options = catalog.axes[axis].filter(value => value !== traits[axis]);
+    const options = (catalog.random_axes?.[axis] ?? catalog.axes[axis]).filter(value => value !== traits[axis]);
     if (options.length) traits[axis] = changed[axis] = choice(options, rng);
   }
   return [traits, changed];

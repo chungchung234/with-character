@@ -6,7 +6,7 @@
 
 **코딩 에이전트에게 성격을 입혀도, 코드와 사실은 그대로.**
 
-64개의 완성형 캐릭터 · 한국어/영어 자연어 설정 · 프리셋 랜덤 · 카오스 조합
+70개의 완성형 캐릭터 · 한국어/영어 자연어 설정 · 프리셋 랜덤 · 카오스 조합
 
 [![Claude Code Plugin](https://img.shields.io/badge/Claude_Code-plugin-D97757?style=flat-square)](https://code.claude.com/docs/en/plugins)
 [![Claude Cowork](https://img.shields.io/badge/Claude_Cowork-compatible-D97757?style=flat-square)](https://claude.com/docs/cowork/guide/plugins)
@@ -71,7 +71,7 @@ codex plugin add with-character@personal
 | 기능 | 설명 |
 |---|---|
 | 완성형 프리셋 | 이름만 골라도 말투·관계·역할·세계관이 함께 설정됩니다. |
-| 64종 캐릭터 | 애니, 애니 남성, 판타지, SF, 전문가, 동물·개그를 포함합니다. |
+| 70종 캐릭터 | 애니, 애니 남성, 판타지, SF, 전문가, 유명 아키타입, 동물·개그를 포함합니다. |
 | 자연어 설정 | “강아지는 유지하고 몸만 로봇으로” 같은 한국어 요청을 이해합니다. |
 | 두 종류의 랜덤 | 안전한 프리셋 랜덤과 모든 축을 섞는 카오스 랜덤을 구분합니다. |
 | 안정적인 결과 | 랜덤 seed를 저장하므로 선택한 조합이 대화 도중 바뀌지 않습니다. |
@@ -122,7 +122,7 @@ codex plugin add with-character@personal
 
 ```text
 random
-└─ 완성된 64개 프리셋 중 하나 선택
+└─ 완성된 70개 프리셋 중 하나 선택
 
 dog chaos
 └─ 강아지는 유지 + 성격/역할/세계관 일부 변형
@@ -188,14 +188,15 @@ details:
 | `anime-male` | 8 | 불량 선배, 다정한 미소년, 천재 책사, 열혈 주장 |
 | `fantasy` | 16 | 여우 마법사, 용 현자, 성기사, 드루이드 |
 | `sci-fi` | 14 | 우주 함장, 사이버펑크 해커, 우주 해병, 시간 여행자 |
-| `professional` | 7 | 신사 탐정, 임상 진단가, 베테랑 엔지니어 |
+| `professional` | 11 | 신사 탐정, 임상 진단가, 베테랑 엔지니어, 불같은 셰프 |
 | `animal` | 7 | 강아지, 로봇 강아지, 오랑우탄, 올빼미 선생 |
-| `comedy` | 13 | 건달이, 원시인, 중2병, 광기 과학자 |
+| `comedy` | 18 | 건달이, 원시인, 축구 중계자, 홈쇼핑 호스트 |
+| `iconic` | 6 | 불같은 셰프, 다크 비질란테, 천재 발명가, 사극 왕 |
 
 팩은 서로 겹칠 수 있습니다. 예를 들어 로봇 강아지는 `animal`과 `sci-fi` 양쪽에서 선택될 수 있습니다.
 
 <details>
-<summary><strong>64종 전체 프리셋과 같은 상황의 답변 비교 펼치기</strong></summary>
+<summary><strong>70종 전체 프리셋과 같은 상황의 답변 비교 펼치기</strong></summary>
 
 ### 전체 프리셋 답변 예시
 
@@ -260,6 +261,12 @@ details:
 | 전문가 | `chef-mentor` | 셰프 멘토 | “42행의 null이 국물 맛을 흐렸군. 원인을 걷어내고 테스트로 간을 보자고.” |
 | 모험 | `samurai-strategist` | 사무라이 전략가 | “42행에서 빈틈을 찾았다. 원인을 끊고, 수정하고, 시험한다. 세 수면 충분하다.” |
 | 모험 | `pirate-captain` | 해적 선장 | “잘 찾았다, 항해사! 42행의 null 암초를 표시하고 유입 항로를 거슬러 올라가자!” |
+| 유명 아키타입 | `fiery-celebrity-chef` | 불같은 스타 셰프 | “셰프, 42행의 null이 아직 설익었어! 호출자를 추적하고 회귀 테스트로 제대로 익혀!” |
+| 유명 아키타입 | `dark-vigilante` | 다크 비질란테 | “42행은 그림자일 뿐이다. 진짜 증거는 상류 호출자에 남아 있다.” |
+| 유명 아키타입 | `arrogant-genius-inventor` | 오만한 천재 발명가 | “역시 내가 찾았군. 42행이다. 이제 천재적 null 기원 추적기로 입력을 검증하지.” |
+| 유명 아키타입 | `dramatic-football-commentator` | 과몰입 축구 중계자 | “42행에서 null 발견! 결정적인 태클입니다! 이제 호출자 추적과 회귀 테스트로 마무리!” |
+| 유명 아키타입 | `historical-drama-king` | 사극 왕 | “42행에 null이라니! 경은 그 근원을 추적하고 회귀 테스트를 과인에게 올리도록 하라.” |
+| 유명 아키타입 | `overinvested-home-shopping-host` | 과몰입 홈쇼핑 호스트 | “고객님, 42행 수정에 호출자 추적과 회귀 테스트까지 한 번에 구성해 드립니다!” |
 | 동물·개그 | `dog` | 통역 강아지 | “멍! 킁킁… 왈왈! (통역: 42번째 줄의 null을 찾았어요. 같이 추적해요!)” |
 | 동물·개그 | `barking-dog` | 짖기만 하는 강아지 | “킁킁… 멍! 멍멍!! 왈왈!” |
 | 동물·개그 | `robot-dog` | 로봇 강아지 | “삐빅—42행 null 감지. 멍! 꼬리 모터 최대 출력!” |
@@ -270,7 +277,7 @@ details:
 
 </details>
 
-표의 프리셋 ID나 표시 이름을 그대로 사용할 수 있습니다. 예를 들어 `/with-character:set dog`, `/with-character:set 원시인`, `/with-character:set 쿨 라이벌`, `/with-character:set 성기사`, `/with-character:set 우주 해병`, `/with-character:set 건달이`가 모두 동작합니다. 팩 랜덤은 `random anime`, `random anime-male`, `random fantasy`, `random sci-fi`, `random professional`, `random adventure`, `random comedy`처럼 요청할 수 있습니다.
+표의 프리셋 ID나 표시 이름을 그대로 사용할 수 있습니다. 예를 들어 `/with-character:set dog`, `/with-character:set 원시인`, `/with-character:set 쿨 라이벌`, `/with-character:set 불같은 셰프`, `/with-character:set 사극 왕`, `/with-character:set 건달이`가 모두 동작합니다. 팩 랜덤은 `random anime`, `random anime-male`, `random fantasy`, `random sci-fi`, `random professional`, `random adventure`, `random comedy`, `random iconic`처럼 요청할 수 있습니다.
 
 ### 건달이
 
@@ -292,7 +299,7 @@ details:
 | `/with-character:set 건달이에 chaos를 넣고 판타지 마법사로 해줘` | 헴을 모시는 건달 마법사 | “헴!!! 42번째 룬에 숨어든 null 마물, 제가 불덩이로 예의 바르게 조지겠습니다!!!” |
 | `/with-character:set chaos random` | 고풍스러운 츤데레 로봇 강아지 의사 | “진단 완료다, 멍. 42행이 아픈 것뿐이니 호들갑 떨지 말거라! 삐빅!” |
 
-`random`은 위의 완성형 프리셋 64개 중 하나를 고르고, `chaos random`은 캐릭터의 몸·역할·성격·세계관·말투까지 처음부터 섞습니다. 웃기되 안정적인 결과가 필요하면 `dog chaos`처럼 기본 프리셋을 지정하는 편이 좋습니다.
+`random`은 위의 완성형 프리셋 70개 중 하나를 고르고, `chaos random`은 캐릭터의 몸·역할·성격·세계관·말투까지 처음부터 섞습니다. 웃기되 안정적인 결과가 필요하면 `dog chaos`처럼 기본 프리셋을 지정하는 편이 좋습니다.
 
 ### 프리셋 선정 기준
 
@@ -369,7 +376,7 @@ details:
 <details>
 <summary><strong>랜덤과 카오스 랜덤은 무엇이 다른가요?</strong></summary>
 
-`random`은 사람이 설계한 64개 완성형 프리셋 중 하나를 고릅니다. `chaos random`은 모든 축을 새로 조합하므로 더 예측 불가능합니다.
+`random`은 사람이 설계한 70개 완성형 프리셋 중 하나를 고릅니다. `chaos random`은 모든 축을 새로 조합하므로 더 예측 불가능합니다.
 
 </details>
 
@@ -394,8 +401,8 @@ plugins/with-character/
 ├── commands/              # set, status, on, off, help
 ├── hooks/                 # 세션 시작 시 저장된 설정 로드
 ├── scripts/
-│   ├── catalog.json       # 64개 프리셋과 조합 축
-│   ├── locales/en.json    # 64개 프리셋의 영어 이름과 전용 말투
+│   ├── catalog.json       # 70개 프리셋과 조합 축
+│   ├── locales/en.json    # 70개 프리셋의 영어 이름과 전용 말투
 │   └── compile_character.mjs  # 실제 런타임(Node.js 표준 라이브러리만 사용)
 └── skills/with-character/
     ├── SKILL.md

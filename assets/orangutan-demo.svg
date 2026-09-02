@@ -55,7 +55,7 @@
     <text x="105" y="463" fill="#c8ccd6" font-style="italic">(Translation: Great find! Let's trace the caller before line 42.)</text>
 
     <rect x="105" y="494" width="518" height="34" rx="8" fill="#2b211b"/>
-    <text x="121" y="518" fill="#ffb36b" font-size="17">64 presets · 한국어 + English · Random + Chaos</text>
+    <text x="121" y="518" fill="#ffb36b" font-size="17">70 presets · 한국어 + English · Random + Chaos</text>
   </g>
 
   <rect x="70" y="579" width="1140" height="2" fill="url(#accent)" opacity=".75"/>

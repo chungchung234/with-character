@@ -1,6 +1,6 @@
 ---
 name: with-character
-description: Apply one of 64 curated With Character voices or a custom Korean or English persona while preserving code, commands, paths, errors, facts, and safety. Use when the user chooses, randomizes, remixes, or customizes a character voice.
+description: Apply one of 70 curated With Character voices or a custom Korean or English persona while preserving code, commands, paths, errors, facts, and safety. Use when the user chooses, randomizes, remixes, or customizes a character voice.
 ---
 
 # With Character

@@ -69,6 +69,7 @@ test("English locale covers every preset", () => {
 });
 
 test("every preset and pack is valid", () => {
+  assert.equal(Object.keys(catalog.presets).length, 70);
   for (const [id, definition] of Object.entries(catalog.presets)) {
     assert.ok(catalog.modes.includes(definition.default_mode), id);
     for (const [axis, value] of Object.entries(definition.traits)) assert.ok(catalog.axes[axis].includes(value), `${id}.${axis}`);
@@ -76,6 +77,24 @@ test("every preset and pack is valid", () => {
   for (const [pack, ids] of Object.entries(catalog.packs)) {
     assert.equal(new Set(ids).size, ids.length, `${pack} contains duplicates`);
     for (const id of ids) assert.ok(catalog.presets[id], `${pack} contains unknown ${id}`);
+  }
+});
+
+test("iconic archetypes are distinct, localized, and available as a pack", () => {
+  const iconic = [
+    "fiery-celebrity-chef", "dark-vigilante", "arrogant-genius-inventor",
+    "dramatic-football-commentator", "historical-drama-king", "overinvested-home-shopping-host"
+  ];
+  assert.deepEqual(catalog.packs.iconic, iconic);
+  assert.equal(catalog.presets["arrogant-genius-inventor"].traits.role, "inventor");
+  assert.equal(catalog.presets["dramatic-football-commentator"].traits.role, "commentator");
+  assert.equal(catalog.presets["historical-drama-king"].traits.role, "monarch");
+  assert.deepEqual(catalog.random_axes.role, catalog.axes.role.slice(0, 30));
+  assert.deepEqual(catalog.random_axes.relation, catalog.axes.relation.slice(0, 8));
+  for (const id of iconic) {
+    assert.ok(english.display_names[id], `${id} needs an English display name`);
+    assert.ok(english.signatures[id], `${id} needs an English signature`);
+    assert.ok(catalog.presets[id].signature?.rules?.length >= 3, `${id} needs observable Korean rules`);
   }
 });
 
@@ -137,7 +156,7 @@ test("Claude manifest and workspace fallback support Code and Cowork", () => {
   const hook = readFileSync(join(root, "plugins/with-character/hooks/session-start.sh"), "utf8");
   const setCommand = readFileSync(join(root, "plugins/with-character/commands/set.md"), "utf8");
   assert.equal(claudeManifest.name, "with-character");
-  assert.equal(claudeManifest.version, "1.3.0");
+  assert.equal(claudeManifest.version, "1.4.0");
   assert.equal(claudeManifest.license, "MIT");
   assert.ok(readFileSync(join(root, "plugins/with-character/LICENSE"), "utf8").startsWith("MIT License"));
   assert.equal(codexManifest.version.split("+")[0], claudeManifest.version);

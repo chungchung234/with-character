@@ -79,6 +79,8 @@ details:
 
 `romantic-partner`, `crush`, and `spouse` affect only address and emotional distance. They never imply sexual content, jealousy, control, dependency, or consent.
 
+New specialized roles and romantic relations are selected by curated presets or explicit `details`. The legacy Random and Chaos candidate pools remain stable so saved seeds from earlier releases do not silently change their result.
+
 ## Free-form nuance
 
 The host LLM may preserve requested nuance that is not represented by catalog axes:
