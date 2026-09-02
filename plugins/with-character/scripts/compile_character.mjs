@@ -159,7 +159,7 @@ function choosePreset(config, catalog, rng) {
 
 function randomTraits(catalog, rng) {
   const traits = Object.fromEntries(Object.entries(catalog.axes).filter(([axis]) => axis !== "species").map(([axis, values]) => [axis, choice(catalog.random_axes?.[axis] ?? values, rng)]));
-  if (choice([true, false], rng)) traits.species = choice(catalog.axes.species, rng);
+  if (choice([true, false], rng)) traits.species = choice(catalog.random_axes?.species ?? catalog.axes.species, rng);
   return traits;
 }
 function applyChaos(traits, catalog, rng, intensity) {

@@ -69,7 +69,7 @@ test("English locale covers every preset", () => {
 });
 
 test("every preset and pack is valid", () => {
-  assert.equal(Object.keys(catalog.presets).length, 70);
+  assert.equal(Object.keys(catalog.presets).length, 76);
   for (const [id, definition] of Object.entries(catalog.presets)) {
     assert.ok(catalog.modes.includes(definition.default_mode), id);
     for (const [axis, value] of Object.entries(definition.traits)) assert.ok(catalog.axes[axis].includes(value), `${id}.${axis}`);
@@ -92,6 +92,26 @@ test("iconic archetypes are distinct, localized, and available as a pack", () =>
   assert.deepEqual(catalog.random_axes.role, catalog.axes.role.slice(0, 30));
   assert.deepEqual(catalog.random_axes.relation, catalog.axes.relation.slice(0, 8));
   for (const id of iconic) {
+    assert.ok(english.display_names[id], `${id} needs an English display name`);
+    assert.ok(english.signatures[id], `${id} needs an English signature`);
+    assert.ok(catalog.presets[id].signature?.rules?.length >= 3, `${id} needs observable Korean rules`);
+  }
+});
+
+test("workplace, show, magical-girl, and horror presets are complete", () => {
+  const added = [
+    "military-drill-instructor", "magical-girl-debugger", "courtroom-judge",
+    "office-bureaucrat", "game-show-host", "gothic-vampire-aristocrat"
+  ];
+  assert.deepEqual(catalog.packs.horror, ["gothic-vampire-aristocrat", "necromancer-scholar", "pact-warlock", "anime-yandere-girl"]);
+  assert.equal(catalog.presets["courtroom-judge"].traits.role, "judge");
+  assert.equal(catalog.presets["office-bureaucrat"].traits.role, "bureaucrat");
+  assert.equal(catalog.presets["game-show-host"].traits.role, "host");
+  assert.equal(catalog.presets["gothic-vampire-aristocrat"].traits.world, "gothic");
+  assert.equal(catalog.presets["gothic-vampire-aristocrat"].traits.species, "vampire");
+  assert.deepEqual(catalog.random_axes.world, catalog.axes.world.slice(0, 9));
+  assert.deepEqual(catalog.random_axes.species, catalog.axes.species.slice(0, 7));
+  for (const id of added) {
     assert.ok(english.display_names[id], `${id} needs an English display name`);
     assert.ok(english.signatures[id], `${id} needs an English signature`);
     assert.ok(catalog.presets[id].signature?.rules?.length >= 3, `${id} needs observable Korean rules`);
@@ -156,7 +176,7 @@ test("Claude manifest and workspace fallback support Code and Cowork", () => {
   const hook = readFileSync(join(root, "plugins/with-character/hooks/session-start.sh"), "utf8");
   const setCommand = readFileSync(join(root, "plugins/with-character/commands/set.md"), "utf8");
   assert.equal(claudeManifest.name, "with-character");
-  assert.equal(claudeManifest.version, "1.4.0");
+  assert.equal(claudeManifest.version, "1.5.0");
   assert.equal(claudeManifest.license, "MIT");
   assert.ok(readFileSync(join(root, "plugins/with-character/LICENSE"), "utf8").startsWith("MIT License"));
   assert.equal(codexManifest.version.split("+")[0], claudeManifest.version);

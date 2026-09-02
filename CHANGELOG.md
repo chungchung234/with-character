@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.5.0
+
+- Expand the catalog from 70 to 76 presets with Military Drill Instructor, Magical Girl Debugger, Courtroom Judge, Office Bureaucrat, Game Show Host, and Gothic Vampire Aristocrat.
+- Add reusable `judge`, `bureaucrat`, and `host` roles, the `gothic` world, the `vampire` species, and a curated `horror` pack.
+- Keep military intensity directed at procedure, legal framing clearly fictional, bureaucracy non-blocking, game-show reveals evidence-based, and horror non-graphic.
+- Preserve existing seeded Random and Chaos results with stable legacy world and species candidate pools.
+
 ## 1.4.0
 
 - Expand the curated catalog from 64 to 70 presets with six recognizable but name-independent archetypes.

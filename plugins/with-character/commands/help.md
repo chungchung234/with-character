@@ -15,6 +15,7 @@ description: 캐릭터를 쉽게 고르는 간단 도움말
 /with-character:set random fantasy
 /with-character:set random anime-male
 /with-character:set random iconic
+/with-character:set random horror
 ```
 
 `random`은 완성된 프리셋 중 선택하고 `chaos random`은 완전 조합이라는 차이를 강조하세요. 상세 축과 말하기 모드는 사용자가 "상세 설정 보여줘"라고 요청할 때만 안내하세요.

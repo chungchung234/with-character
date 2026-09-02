@@ -6,7 +6,7 @@
 
 **Give your coding agent a personality without changing the code or the facts.**
 
-70 curated characters · Korean and English · preset random · Chaos remix
+76 curated characters · Korean and English · preset random · Chaos remix
 
 [![Claude Code Plugin](https://img.shields.io/badge/Claude_Code-plugin-D97757?style=flat-square)](https://code.claude.com/docs/en/plugins)
 [![Claude Cowork](https://img.shields.io/badge/Claude_Cowork-compatible-D97757?style=flat-square)](https://claude.com/docs/cowork/guide/plugins)
@@ -68,22 +68,24 @@ Natural-language selection is handled by the host LLM, not a brittle keyword par
 
 ## Character packs
 
-There are 70 complete presets. IDs remain language-neutral, so the same saved configuration works in either locale.
+There are 76 complete presets. IDs remain language-neutral, so the same saved configuration works in either locale.
 
 | Pack | Examples |
 |---|---|
-| Anime girls | Tsundere, Deredere, Kuudere, Dandere, Genki, Yandere, Oneesan, Ojou-sama, Neko, Kusogaki |
+| Anime girls | Tsundere, Deredere, Kuudere, Dandere, Genki, Yandere, Oneesan, Ojou-sama, Neko, Kusogaki, Magical Girl Debugger |
 | Anime characters | Shonen Hero, Cool Rival, Delinquent Senpai, Gentle Bishonen, Genius Strategist, Hot-blooded Captain, Mysterious Mentor |
 | Fantasy | Dragon Sage, Elf Ranger, Dwarf Smith, Slime Merchant, Necromancer Scholar, Holy Paladin, Bard, Rogue, Druid, Warlock |
 | Science fiction | Space Captain, Cyberpunk Hacker, Android Medic, Alien Researcher, Space Marine, Bounty Hunter, Starship Engineer, Synthetic Detective |
 | Professional | Clinical Diagnostician, Strict Coach, Cheerful Tutor, Veteran Engineer, Chef Mentor, Gentleman Detective |
 | Iconic archetypes | Fiery Celebrity Chef, Dark Vigilante, Genius Inventor, Football Commentator, Historical Drama King, Home Shopping Host |
+| Workplace & show | Military Drill Instructor, Courtroom Judge, Office Bureaucrat, Game Show Host |
+| Horror | Gothic Vampire Aristocrat, Necromancer Scholar, Pact Warlock, Yandere |
 | Animal & comedy | Dog, Bark-only Dog, Robot Dog, Orangutan, Wild Orangutan, Caveman Developer, Gangster Bro |
 
 Use `/with-character:help` for guidance, or browse the complete preset definitions in [`catalog.json`](plugins/with-character/scripts/catalog.json).
 
 <details>
-<summary><strong>See all 70 presets with English response examples</strong></summary>
+<summary><strong>See all 76 presets with English response examples</strong></summary>
 
 The shared situation is: **“I found the null error on line 42.”**
 
@@ -152,6 +154,12 @@ The shared situation is: **“I found the null error on line 42.”**
 | `dramatic-football-commentator` | Dramatic Football Commentator | “WHAT A FIND ON LINE 42! Now the caller enters the box—and the regression test seals the result!” |
 | `historical-drama-king` | Historical Drama King | “A null on line 42? Counselor, trace its origin and present the regression test for royal approval.” |
 | `overinvested-home-shopping-host` | Overinvested Home Shopping Host | “Valued customer, today you get the line-42 fix, caller tracing, AND a regression test—risk disclosed!” |
+| `military-drill-instructor` | Military Drill Instructor | “Trainee! Report: null on line 42. Trace the caller, write the test, execute—and confirm!” |
+| `magical-girl-debugger` | Magical Girl Debugger | “The null curse is exposed on line 42! Trace its origin, then seal it with a regression test!” |
+| `courtroom-judge` | Courtroom Judge | “Evidence establishes a null on line 42. Trace the caller before this court rules on the fix.” |
+| `office-bureaucrat` | Office Bureaucrat | “Line-42 null confirmed. Please attach the caller trace and regression-test completion record.” |
+| `game-show-host` | Game Show Host | “Contestant, line 42 is correct! For the bonus round: which caller introduced the null?” |
+| `gothic-vampire-aristocrat` | Gothic Vampire Aristocrat | “Honored guest, a null haunts line 42. Let us trace the old contract that invited it in.” |
 | `dog` | Interpreter Dog | “Woof! Sniff, woof! *(Translation: The null is on line 42. Let's trace it.)*” |
 | `barking-dog` | Bark-only Dog | “WOOF! WOOF-WOOF! GRRR… WOOF!” |
 | `robot-dog` | Robot Dog | “BEEP-WOOF! Null scent acquired at line 42.” |
@@ -170,6 +178,7 @@ Random chooses one curated preset. Chaos starts from a recognizable preset and m
 /with-character:set random
 /with-character:set random from the sci-fi pack
 /with-character:set random from the iconic pack
+/with-character:set random from the horror pack
 /with-character:set robot dog with chaos
 /with-character:set full chaos random
 ```

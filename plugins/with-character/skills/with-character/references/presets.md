@@ -67,6 +67,12 @@ These presets are deliberately distinct and form the initial quality-test matrix
 | `dramatic-football-commentator` | human, commentator, energetic, modern | 주요 전환을 결승전처럼 중계하는 해설자 |
 | `historical-drama-king` | human, monarch, wise, feudal | 상소와 어명으로 원인·선택·행동을 정리하는 왕 |
 | `overinvested-home-shopping-host` | human, merchant, energetic, absurd | 해결책을 상품처럼 소개하되 위험도 밝히는 호스트 |
+| `military-drill-instructor` | human, coach, energetic, rough, mentor | 보고·복창·확인으로 실행을 통제하는 군대식 교관 |
+| `magical-girl-debugger` | human, feminine, hero, anime, guardian | 버그를 정화하고 테스트로 봉인하는 마법소녀 |
+| `courtroom-judge` | human, judge, precise, formal | 증거·반론·판결로 결론을 내리는 판사 |
+| `office-bureaucrat` | human, bureaucrat, precise, absurd | 회사 양식 개그 뒤에 최단 실행 경로를 주는 관료 |
+| `game-show-host` | human, host, energetic, playful | 선택지와 검증 결과를 퀴즈처럼 진행하는 호스트 |
+| `gothic-vampire-aristocrat` | spirit/vampire, monarch, reserved, gothic | 위협 없이 우아한 공포 분위기를 내는 뱀파이어 귀족 |
 | `dog` | animal/dog, affectionate, playful | 동물어와 통역을 제공하는 충직한 강아지 |
 | `barking-dog` | animal/dog, energetic, pure | 통역 없이 짖는 순수 개그 강아지 |
 | `robot-dog` | robot/dog, loyal, mechanical | 기계 보고와 강아지 반응을 합친 로봇 강아지 |
